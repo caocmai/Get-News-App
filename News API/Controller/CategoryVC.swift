@@ -12,7 +12,14 @@ class CategoryVC: UIViewController {
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
-    let category = ["General", "Business", "Science", "Technology", "Health", "Entertainment", "Sports"]
+    let test = "https://newsapi.org/v2/sources?apiKey=cb3a1eac41554355a9bbf8612b87d638&category=business"
+    let APIKEY = "cb3a1eac41554355a9bbf8612b87d638"
+    let allSources = "https://newsapi.org/v2/sources?apiKey=cb3a1eac41554355a9bbf8612b87d638"
+    
+    var newsSources = [NewsSources]()
+    let category2 = ["General", "Business", "Science", "Technology", "Health", "Entertainment", "Sports"]
+    
+    var category = ["general": "", "business": "", "science": "", "technology": "", "health": "", "entertainment": "", "sports": ""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +29,84 @@ class CategoryVC: UIViewController {
         categoryCollectionView.register(UINib(nibName: "CategoryCell", bundle: .main), forCellWithReuseIdentifier: "categoryCell")
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Homepage"
+        fetchPokemonList(url: allSources)
+        
         
     }
     
+//    func getSources() {
+//        for new in newsSources {
+//            print(new.sources)
+//        }
+//    }
     
+    func fetchPokemonList(url: String) {
+            
+            //TODO: Create session configuration here
+            let defaultSession = URLSession(configuration: .default)
+            
+            //TODO: Create URL (...and send request and process response in closure...)
+            if let url = URL(string: url) {
+                
+                //TODO: Create Request here
+                let request = URLRequest(url: url)
+                
+                
+                // Create Data Task...
+                let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+                    
+                    //                print("data is: ", data!)
+                    //                print("response is: ", response!)
+                    
+                    do {
+                        //                    let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
+                        
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+                        let newSource = try decoder.decode(NewsSources.self, from: data!)
+    //                    print(pokemons)
+                        self.newsSources = [newSource]
+                        
+                        
+                        DispatchQueue.main.async {
+//                            self.table.reloadData()
+//                            for new in self.newsSources {
+//                                print(new.sources)
+//                            }
+//                            self.getSources()
+                            for stuff in (self.newsSources[0].sources) {
+                                if ((self.category[stuff.category]) != nil) {
+                                    self.category[stuff.category]! += "\(stuff.id),"
+                                }
+                            }
+                            print(self.category["business"]!.dropLast())
+                        }
+                        //                    print(self.pokemons)
+                        //                    print(pokemons.results[0].name)
+                        
+                    } catch {
+                        print("JSON error: \(error.localizedDescription)")
+                    }
+                    
+                })
+                dataTask.resume()
+            }
+        }
+    
+}
+
+//national-geographic,national-geographicnew-scientist,new-scientistnext-big-future,next-big-future
+//national-geographic,new-scientist,next-big-future,
+
+
+struct NewsSources: Decodable{
+    let status: String
+    var sources : [Source]
+}
+
+struct Source: Decodable {
+    let id: String
+    let category: String
 }
 
 extension CategoryVC: UICollectionViewDataSource {
@@ -37,7 +118,7 @@ extension CategoryVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
         cell.backgroundColor = .blue
-        cell.categoryLabelName.text = category[indexPath.row]
+        cell.categoryLabelName.text = category2[indexPath.row]
         return cell
     }
     
@@ -55,7 +136,7 @@ extension CategoryVC: UICollectionViewDelegate {
         
         let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
         
-        headLineVC.category = category[indexPath.row]
+        headLineVC.category = category2[indexPath.row]
         self.navigationController?.pushViewController(headLineVC, animated: true)
         
         //        let newsVC = DetailNewsStoryVC()
