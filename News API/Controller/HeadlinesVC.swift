@@ -14,6 +14,8 @@ class HeadlinesVC: UIViewController {
     
     var category: String? = nil
     
+    var headlines: [Article] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,7 +43,7 @@ class HeadlinesVC: UIViewController {
 
 extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        return headlines.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -53,6 +55,7 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
 
 //        cell.backgroundColor = .blue
 //        cell.headlineLabel.text = "test is a test"
+        cell.headlineLabel.text = headlines[indexPath.row].title
         return cell
     }
     

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// NOTE For some reason the science and entertainment don't work, LOOK at the MODEL bc getting stuff on Chrome
 class CategoryVC: UIViewController {
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
@@ -32,83 +32,83 @@ class CategoryVC: UIViewController {
         categoryCollectionView.register(UINib(nibName: "CategoryCell", bundle: .main), forCellWithReuseIdentifier: "categoryCell")
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Homepage"
-        fetchNewsSources(url: allSources)
+//        fetchNewsSources(url: allSources)
         
-        updateArticles()
+//        getArticlesByCategory()
         
         
     }
     
-    func updateArticles() {
-        networkManager.getArticles(){ result in
-            switch result {
-            case let .success(gotArticles):
-                self.articles = gotArticles
-            case let .failure(gotError):
-                print(gotError)
-            }
-//            print(result)
-        }
-    }
-    
-//    func getSources() {
-//        for new in newsSources {
-//            print(new.sources)
+//    func getArticlesByCategory() {
+//        networkManager.getArticles(passedInCategory: "health"){ result in
+//            switch result {
+//            case let .success(gotArticles):
+//                self.articles = gotArticles
+//            case let .failure(gotError):
+//                print(gotError)
+//            }
+////                print(result)
 //        }
 //    }
     
+    //    func getSources() {
+    //        for new in newsSources {
+    //            print(new.sources)
+    //        }
+    //    }
+    
     func fetchNewsSources(url: String) {
+        
+        //TODO: Create session configuration here
+        let defaultSession = URLSession(configuration: .default)
+        
+        //TODO: Create URL (...and send request and process response in closure...)
+        if let url = URL(string: url) {
             
-            //TODO: Create session configuration here
-            let defaultSession = URLSession(configuration: .default)
+            //TODO: Create Request here
+            let request = URLRequest(url: url)
             
-            //TODO: Create URL (...and send request and process response in closure...)
-            if let url = URL(string: url) {
+            
+            // Create Data Task...
+            let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
                 
-                //TODO: Create Request here
-                let request = URLRequest(url: url)
+                //                print("data is: ", data!)
+                //                print("response is: ", response!)
                 
-                
-                // Create Data Task...
-                let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+                do {
+                    //                    let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
                     
-                    //                print("data is: ", data!)
-                    //                print("response is: ", response!)
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let newSource = try decoder.decode(NewsSources.self, from: data!)
+                    //                    print(pokemons)
+                    self.newsSources = [newSource]
                     
-                    do {
-                        //                    let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
-                        
-                        let decoder = JSONDecoder()
-                        decoder.keyDecodingStrategy = .convertFromSnakeCase
-                        let newSource = try decoder.decode(NewsSources.self, from: data!)
-    //                    print(pokemons)
-                        self.newsSources = [newSource]
-                        
-                        
-                        DispatchQueue.main.async {
-//                            self.table.reloadData()
-//                            for new in self.newsSources {
-//                                print(new.sources)
-//                            }
-//                            self.getSources()
-                            for stuff in (self.newsSources[0].sources) {
-                                if ((self.category[stuff.category]) != nil) {
-                                    self.category[stuff.category]! += "\(stuff.id),"
-                                }
+                    
+                    DispatchQueue.main.async {
+                        //                            self.table.reloadData()
+                        //                            for new in self.newsSources {
+                        //                                print(new.sources)
+                        //                            }
+                        //                            self.getSources()
+                        for stuff in (self.newsSources[0].sources) {
+                            if ((self.category[stuff.category]) != nil) {
+                                self.category[stuff.category]! += "\(stuff.id),"
                             }
-                            print(self.category["business"]!.dropLast())
                         }
-                        //                    print(self.pokemons)
-                        //                    print(pokemons.results[0].name)
-                        
-                    } catch {
-                        print("JSON error: \(error.localizedDescription)")
+                        print(self.category["business"]!.dropLast())
                     }
+                    //                    print(self.pokemons)
+                    //                    print(pokemons.results[0].name)
                     
-                })
-                dataTask.resume()
-            }
+                } catch {
+                    print("JSON error: \(error.localizedDescription)")
+                }
+                
+            })
+            dataTask.resume()
         }
+    }
     
 }
 
@@ -140,13 +140,34 @@ extension CategoryVC: UICollectionViewDelegate {
         
         //        self.present(newVS, animated: true, completion: nil)
         
-        let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        //        networkManager.getArticles(passedInCategory: "health"){ result in
+        //            switch result {
+        //            case let .success(gotArticles):
+        //                self.articles = gotArticles
+        //            case let .failure(gotError):
+        //                print(gotError)
+        //            }
         
+        let selected = category2[indexPath.row]
         
-        let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
+        networkManager.getArticles(passedInCategory: selected.lowercased()) { result in
+            switch result {
+            case let .success(gotArticles):
+                print(gotArticles)
+                let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                
+                
+                let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
+                headLineVC.headlines = gotArticles
+                headLineVC.category = self.category2[indexPath.row]
+                self.navigationController?.pushViewController(headLineVC, animated: true)
+                
+            case let .failure(gotError):
+                print(gotError)
+            }
+        }
+    
         
-        headLineVC.category = category2[indexPath.row]
-        self.navigationController?.pushViewController(headLineVC, animated: true)
         
         //        let newsVC = DetailNewsStoryVC()
         //        self.present(newsVC, animated: true, completion: nil)

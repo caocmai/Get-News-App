@@ -16,7 +16,6 @@ class HeadlinesCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        headlineLabel.text = "test"
         headlineImage.image = UIImage(named: "beach")
         self.backgroundColor = .yellow
     }

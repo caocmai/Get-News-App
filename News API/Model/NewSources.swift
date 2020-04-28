@@ -8,12 +8,25 @@
 
 import Foundation
 
-struct NewsSources: Decodable{
+public struct NewsSources: Decodable{
     let status: String
     var sources : [Source]
 }
 
-struct Source: Decodable {
+public struct Source: Decodable {
     let id: String
     let category: String
+}
+
+public struct Article: Codable {
+    let author: String?
+    let title: String?
+    let description: String?
+    let url: URL?
+    let urlToImage: URL?
+    let content: String?
+}
+
+public struct ArticleList: Codable{
+    public var articles: [Article]
 }

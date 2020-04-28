@@ -10,6 +10,8 @@ import Foundation
 
 class NetworkManager {
     
+//    https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=cb3a1eac41554355a9bbf8612b87d638
+    
     let urlSession = URLSession.shared
     let topHeadlinesURL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=cb3a1eac41554355a9bbf8612b87d638"
     let baseURL = "https://newsapi.org/v2/"
@@ -18,11 +20,13 @@ class NetworkManager {
     
     enum EndPoints {
         case articles
+        case category(categoryIn: String)
         
         // Get Path
         func getPath() -> String {
+            
             switch self {
-            case .articles:
+            case .articles, .category:
                 return "top-headlines"
             }
         }
@@ -46,10 +50,15 @@ class NetworkManager {
         func getParams() -> [String: String] {
             switch self {
             case .articles:
-                
-                return ["country": "us"
+                return ["country": "us",
+//                        "category": "\(category)" // This is what's needed to be changed
                 ]
+            case .category(let categoryIn):
+                return ["country": "us",
+                        "category": categoryIn]
             }
+            
+            
         }
         
         // Converting paramters to actual url string
@@ -75,9 +84,10 @@ class NetworkManager {
     
     
     private func makeRequest(for endPoint: EndPoints) -> URLRequest {
+        let path = endPoint.getPath() // Get the first part of URL
         let stringParams = endPoint.paramsToString()
-        let path = endPoint.getPath()
         let fullURL = URL(string: baseURL.appending("\(path)?\(stringParams)"))!
+        print(fullURL)
         var request = URLRequest(url: fullURL)
         request.httpMethod = endPoint.getHTTPRequestMethod()
         request.allHTTPHeaderFields = endPoint.getHeaders(secretKey: APIKEY)
@@ -86,8 +96,10 @@ class NetworkManager {
         
     }
     
-    func getArticles(_ completion: @escaping (Result<[Article]>) -> Void)  {
-        let articleRequest = makeRequest(for: .articles)
+    func getArticles(passedInCategory: String, _ completion: @escaping (Result<[Article]>) -> Void)  {
+//        let articleRequest = makeRequest(for: .articles, passIncategory: passedInCategory)
+        let articleRequest = makeRequest(for: .category(categoryIn: passedInCategory))
+
         
         let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
             // If error
@@ -117,15 +129,3 @@ class NetworkManager {
 }
 
 
-public struct Article: Codable {
-    let author: String?
-    let title: String?
-    let description: String?
-    let url: URL? // Direct URL to article
-    let urlToImage: URL? //URL to image for the article
-    let content: String?
-}
-
-public struct ArticleList: Codable{
-    public var articles: [Article]
-}
