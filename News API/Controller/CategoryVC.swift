@@ -21,6 +21,9 @@ class CategoryVC: UIViewController {
     
     var category = ["general": "", "business": "", "science": "", "technology": "", "health": "", "entertainment": "", "sports": ""]
     
+    let networkManager = NetworkManager()
+    var articles: [Article] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -29,9 +32,23 @@ class CategoryVC: UIViewController {
         categoryCollectionView.register(UINib(nibName: "CategoryCell", bundle: .main), forCellWithReuseIdentifier: "categoryCell")
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Homepage"
-        fetchPokemonList(url: allSources)
+        fetchNewsSources(url: allSources)
+        
+        updateArticles()
         
         
+    }
+    
+    func updateArticles() {
+        networkManager.getArticles(){ result in
+            switch result {
+            case let .success(gotArticles):
+                self.articles = gotArticles
+            case let .failure(gotError):
+                print(gotError)
+            }
+//            print(result)
+        }
     }
     
 //    func getSources() {
@@ -40,7 +57,7 @@ class CategoryVC: UIViewController {
 //        }
 //    }
     
-    func fetchPokemonList(url: String) {
+    func fetchNewsSources(url: String) {
             
             //TODO: Create session configuration here
             let defaultSession = URLSession(configuration: .default)
