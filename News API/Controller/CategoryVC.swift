@@ -99,15 +99,7 @@ class CategoryVC: UIViewController {
 //national-geographic,new-scientist,next-big-future,
 
 
-struct NewsSources: Decodable{
-    let status: String
-    var sources : [Source]
-}
 
-struct Source: Decodable {
-    let id: String
-    let category: String
-}
 
 extension CategoryVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

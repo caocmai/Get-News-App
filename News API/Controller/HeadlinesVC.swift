@@ -56,6 +56,16 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+//        let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
+        
+        let vc = DetailNewsStoryVC()
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
 }
 
