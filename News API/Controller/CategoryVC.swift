@@ -153,7 +153,7 @@ extension CategoryVC: UICollectionViewDelegate {
         networkManager.getArticles(passedInCategory: selected.lowercased()) { result in
             switch result {
             case let .success(gotArticles):
-                print(gotArticles)
+//                print(gotArticles)
                 let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 
                 

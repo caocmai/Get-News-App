@@ -25,5 +25,11 @@ class HeadlinesCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func setHeadlines(for article: Article) {
+        headlineLabel.text = article.title
+        
+        
+    }
 
 }
