@@ -26,7 +26,6 @@ class CategoryVC: UIViewController {
     let networkManager = NetworkManager()
     var articles: [Article] = []
     
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,31 +36,36 @@ class CategoryVC: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Homepage"
         searchBar.delegate = self
-
-    
-    
         
-//        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-//        view.addGestureRecognizer(tapGesture)
-
-//        fetchNewsSources(url: allSources)
+        // To hide the keyboard
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        // This to make sure other things are still clickable after hiding keyboard
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
         
-//        getArticlesByCategory()
+        
+        
+        //        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        //        view.addGestureRecognizer(tapGesture)
+        
+        //        fetchNewsSources(url: allSources)
+        
+        //        getArticlesByCategory()
         
         
     }
     
-//    func getArticlesByCategory() {
-//        networkManager.getArticles(passedInCategory: "health"){ result in
-//            switch result {
-//            case let .success(gotArticles):
-//                self.articles = gotArticles
-//            case let .failure(gotError):
-//                print(gotError)
-//            }
-////                print(result)
-//        }
-//    }
+    //    func getArticlesByCategory() {
+    //        networkManager.getArticles(passedInCategory: "health"){ result in
+    //            switch result {
+    //            case let .success(gotArticles):
+    //                self.articles = gotArticles
+    //            case let .failure(gotError):
+    //                print(gotError)
+    //            }
+    ////                print(result)
+    //        }
+    //    }
     
     //    func getSources() {
     //        for new in newsSources {
@@ -159,13 +163,12 @@ extension CategoryVC: UICollectionViewDelegate {
         //            case let .failure(gotError):
         //                print(gotError)
         //            }
-        
         let selectedCategory = category2[indexPath.row]
         
         networkManager.getArticles(passedInCategory: selectedCategory.lowercased()) { result in
             switch result {
             case let .success(gotArticles):
-//                print(gotArticles)
+                //                print(gotArticles)
                 let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 
                 
@@ -178,7 +181,7 @@ extension CategoryVC: UICollectionViewDelegate {
                 print(gotError)
             }
         }
-    
+        
         
         
         //        let newsVC = DetailNewsStoryVC()
@@ -227,30 +230,30 @@ extension CategoryVC: UISearchBarDelegate {
         
         print(searchBar.text!)
         let searchQuery = searchBar.text!
-//        searchBar.endEditing(true)
+        //        searchBar.endEditing(true)
         self.searchBar.endEditing(true)
         
         networkManager.getSearchResults(passedInQuery: searchQuery) { result in
-                    switch result {
-                    case let .success(gotArticles):
-        //                print(gotArticles)
-                        let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                        
-                        
-                        let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
-                        headLineVC.headlines = gotArticles
-                        headLineVC.category = "Results for \(searchQuery)"
-                        self.navigationController?.pushViewController(headLineVC, animated: true)
-                        
-                    case let .failure(gotError):
-                        print(gotError)
-                    }
-                }
+            switch result {
+            case let .success(gotArticles):
+                //                print(gotArticles)
+                let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                
+                
+                let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
+                headLineVC.headlines = gotArticles
+                headLineVC.category = "Results for \(searchQuery)"
+                self.navigationController?.pushViewController(headLineVC, animated: true)
+                
+            case let .failure(gotError):
+                print(gotError)
+            }
+        }
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         if searchBar.text != "" {
-        return true
+            return true
         } else {
             searchBar.placeholder = "Enter a search phrase"
             return false
@@ -258,8 +261,8 @@ extension CategoryVC: UISearchBarDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-       {
-           self.view.endEditing(true) //Hide the keyboard
-       }
+    {
+        self.view.endEditing(true) //Hide the keyboard
+    }
     
 }
