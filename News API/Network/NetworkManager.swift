@@ -79,7 +79,7 @@ class NetworkManager {
     }
     
     enum Result<T> {
-        case success(T)
+        case success(T?)
         case failure(Error)
     }
     

@@ -173,7 +173,7 @@ extension CategoryVC: UICollectionViewDelegate {
                 
                 
                 let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
-                headLineVC.headlines = gotArticles
+                headLineVC.headlines = gotArticles!
                 headLineVC.category = self.category2[indexPath.row]
                 self.navigationController?.pushViewController(headLineVC, animated: true)
                 
@@ -227,8 +227,6 @@ extension CategoryVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        
-        print(searchBar.text!)
         let searchQuery = searchBar.text!
         //        searchBar.endEditing(true)
         self.searchBar.endEditing(true)
@@ -241,9 +239,15 @@ extension CategoryVC: UISearchBarDelegate {
                 
                 
                 let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
-                headLineVC.headlines = gotArticles
-                headLineVC.category = "Results for \(searchQuery)"
-                self.navigationController?.pushViewController(headLineVC, animated: true)
+                headLineVC.headlines = gotArticles!
+                if gotArticles!.isEmpty {
+                    headLineVC.category = "No Results for \(searchQuery)"
+                    self.navigationController?.pushViewController(headLineVC, animated: true)
+                    
+                }else {
+                    headLineVC.category = "Results for \(searchQuery)"
+                    self.navigationController?.pushViewController(headLineVC, animated: true)
+                }
                 
             case let .failure(gotError):
                 print(gotError)
@@ -258,11 +262,6 @@ extension CategoryVC: UISearchBarDelegate {
             searchBar.placeholder = "Enter a search phrase"
             return false
         }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        self.view.endEditing(true) //Hide the keyboard
     }
     
 }
