@@ -11,32 +11,37 @@ import WebKit
 
 class DetailNewsStoryVC: UIViewController {
     
-    let url: String? = nil
-    let showPage = WKWebView()
+    var url: String? = nil
+    let webPage = WKWebView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setUp()
+        getWebPage(from: url!)
         
-        let url2 = URL(string: "https://www.youtube.com/")
-        print(url2!)
-        let request = URLRequest(url: url2!)
-        showPage.load(request)
+        
         view.backgroundColor = .black
         
     }
     
     func setUp(){
-        self.view.addSubview(showPage)
-        showPage.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(webPage)
+        webPage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            showPage.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            showPage.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
-            showPage.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            showPage.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
+            webPage.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            webPage.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            webPage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webPage.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+    
+    func getWebPage(from url: String) {
+        let toURL = URL(string: url)
+//        print(url2!)
+        let request = URLRequest(url: toURL!)
+        webPage.load(request)
     }
     
 

@@ -65,6 +65,7 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
 //        let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
         
         let vc = DetailNewsStoryVC()
+        vc.url = headlines[indexPath.row].url
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

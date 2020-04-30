@@ -17,7 +17,6 @@ class HeadlinesCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         headlineImage.image = UIImage(named: "beach")
-        self.backgroundColor = .yellow
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

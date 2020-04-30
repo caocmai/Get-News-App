@@ -17,5 +17,10 @@ class CategoryCell: UICollectionViewCell {
         // Initialization code
         self.layer.cornerRadius = 8
     }
+    
+    
+//    func setUp() {
+//        categoryLabelName
+//    }
 
 }

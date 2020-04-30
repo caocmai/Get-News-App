@@ -21,14 +21,18 @@ class NetworkManager {
     enum EndPoints {
         case articles
         case category(categoryIn: String)
-        
+        case everything(q: String)
         // Get Path
         func getPath() -> String {
             
             switch self {
             case .articles, .category:
                 return "top-headlines"
+            case .everything:
+                return "everything"
             }
+            
+            
         }
         
         // Get the Http Request method
@@ -56,6 +60,8 @@ class NetworkManager {
             case .category(let categoryIn):
                 return ["country": "us",
                         "category": categoryIn]
+            case .everything(let qInput):
+                return ["q": qInput]
             }
             
             
@@ -133,6 +139,45 @@ class NetworkManager {
         }
         task.resume()
     }
+    
+    
+    func getSearchResults(passedInQuery: String, _ completion: @escaping (Result<[Article]>) -> Void)  {
+    //        let articleRequest = makeRequest(for: .articles, passIncategory: passedInCategory)
+            let articleRequest = makeRequest(for: .everything(q: passedInQuery))
+
+            
+            let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
+                // If error
+                if let error = error {
+                    return completion(Result.failure(error))
+                }
+                
+                do {
+                let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
+    //                print(jsonObject)
+    //                print("\n\n\n\n\n")
+                } catch {
+                    print(error.localizedDescription)
+                }
+                // If there's data
+                guard let safeData = data else {
+                    return completion(Result.failure(EndPointError.noData))
+                    
+                }
+                // To decode data
+                guard let result = try? JSONDecoder().decode(ArticleList.self, from: safeData) else {
+                    return completion(Result.failure(EndPointError.couldNotParse))
+                }
+                
+                let articles = result.articles
+                
+                DispatchQueue.main.async {
+                    completion(Result.success(articles))
+                }
+                
+            }
+            task.resume()
+        }
     
     
 }
