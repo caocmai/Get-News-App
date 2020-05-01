@@ -39,4 +39,5 @@ class DetailNewsStoryVC: UIViewController {
         let request = URLRequest(url: toURL!)
         webPage.load(request)
     }
+    
 }

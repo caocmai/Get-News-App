@@ -20,11 +20,9 @@ class HeadlinesVC: UIViewController {
         super.viewDidLoad()
         
         view.addSubview(headlinesTableView)
-        
         headlinesTableView.delegate = self
         headlinesTableView.dataSource = self
         title = category!
-        
         // Do any additional setup after loading the view.
     }
 }
@@ -40,23 +38,21 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "headlineCell", for: indexPath) as! HeadlinesCell
-        
-        //        cell.backgroundColor = .blue
-        //        cell.headlineLabel.text = "test is a test"
-        //        cell.headlineLabel.text = headlines[indexPath.row].title
         cell.setHeadlines(for: headlines[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //        let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        //        let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
-        
+        // To display the actual html of the story
         let vc = DetailNewsStoryVC()
         vc.url = headlines[indexPath.row].url
-        
         self.navigationController?.pushViewController(vc, animated: true)
+        
+        // To display contents from New API article
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "articleDetailsVC") as! ArticleDetailsVC
+//        vc.article = headlines[indexPath.row]
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

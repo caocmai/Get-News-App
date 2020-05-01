@@ -27,3 +27,14 @@ public struct Article: Decodable {
 public struct ArticleList: Decodable{
     public var articles: [Article]
 }
+
+
+public struct AllNewsSources: Decodable {
+    let sources: [NewsSource]
+}
+
+public struct NewsSource: Decodable {
+    let id: String?
+    let name: String?
+    let category: String?
+}

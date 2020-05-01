@@ -22,15 +22,20 @@ class NetworkManager {
         case articles
         case category(categoryIn: String)
         case everything(q: String)
+        case sources
+        case getFromNewsSource(newsSource: String)
         // Get Path
         func getPath() -> String {
             
             switch self {
-            case .articles, .category:
+            case .articles, .category, .getFromNewsSource:
                 return "top-headlines"
             case .everything:
                 return "everything"
+            case .sources:
+                return "sources"
             }
+            
             
             
         }
@@ -62,6 +67,10 @@ class NetworkManager {
                         "category": categoryIn]
             case .everything(let qInput):
                 return ["q": qInput]
+            case .sources:
+                return ["language": "en"]
+            case .getFromNewsSource(let inputNewsSource):
+                return ["sources": inputNewsSource]
             }
         }
         
@@ -176,6 +185,85 @@ class NetworkManager {
         }
         task.resume()
     }
+    
+    func getSources(_ completion: @escaping (Result<AllNewsSources>) -> Void)  {
+   
+        let articleRequest = makeRequest(for: .sources)
+        
+        
+        let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
+            // If error
+            if let error = error {
+                return completion(Result.failure(error))
+            }
+            
+            do {
+                let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
+                                    print(jsonObject)
+                                    print("\n\n\n\n\n")
+            } catch {
+                print(error.localizedDescription)
+            }
+            // If there's data
+            guard let safeData = data else {
+                return completion(Result.failure(EndPointError.noData))
+                
+            }
+            // To decode data
+            guard let result = try? JSONDecoder().decode(AllNewsSources.self, from: safeData) else {
+                return completion(Result.failure(EndPointError.couldNotParse))
+            }
+            
+            let sources = result
+            
+            DispatchQueue.main.async {
+                completion(Result.success(sources))
+            }
+            
+        }
+        task.resume()
+    }
+    
+    
+    func getArticlesFromSource(from newsSource: String, _ completion: @escaping (Result<[Article]>) -> Void)  {
+    
+        let articleRequest = makeRequest(for: .getFromNewsSource(newsSource: newsSource))
+         
+         
+         let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
+                 // If error
+                 if let error = error {
+                     return completion(Result.failure(error))
+                 }
+                 
+                 do {
+                     let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
+                     //                    print(jsonObject)
+                     //                    print("\n\n\n\n\n")
+                 } catch {
+                     print(error.localizedDescription)
+                 }
+                 // If there's data
+                 guard let safeData = data else {
+                     return completion(Result.failure(EndPointError.noData))
+                     
+                 }
+                 // To decode data
+                 guard let result = try? JSONDecoder().decode(ArticleList.self, from: safeData) else {
+                     return completion(Result.failure(EndPointError.couldNotParse))
+                 }
+                 
+                 let articles = result.articles
+                 
+                 DispatchQueue.main.async {
+                     completion(Result.success(articles))
+                 }
+                 
+             }
+             task.resume()
+         }
+    
+    
     
     
 }
