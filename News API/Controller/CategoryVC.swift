@@ -142,9 +142,19 @@ extension CategoryVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        let searchQuery = searchBar.text!
-        //        searchBar.endEditing(true)
-        self.searchBar.endEditing(true)
+        let searchQueryText = searchBar.text!
+                searchBar.endEditing(true)
+        
+        // This to handle spaces
+        var searchQuery = ""
+        for letter in searchQueryText {
+            if letter == " " {
+                searchQuery += "%20"
+            }else {
+                searchQuery += String(letter)
+            }
+            
+        }
         
         networkManager.getSearchArticles(passedInQuery: searchQuery) { result in
             switch result {
@@ -156,11 +166,11 @@ extension CategoryVC: UISearchBarDelegate {
                 let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
                 headLineVC.headlines = gotArticles!
                 if gotArticles!.isEmpty {
-                    headLineVC.category = "No Results for \(searchQuery)"
+                    headLineVC.category = "No Results for \(searchQueryText)"
                     self.navigationController?.pushViewController(headLineVC, animated: true)
                     
                 }else {
-                    headLineVC.category = "Results for \(searchQuery)"
+                    headLineVC.category = "Results for \(searchQueryText)"
                     self.navigationController?.pushViewController(headLineVC, animated: true)
                 }
                 
