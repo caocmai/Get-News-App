@@ -75,8 +75,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headlines" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1p1-r4-X1I">
-                                                    <rect key="frame" x="25" y="16" width="242" height="108"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headline" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1p1-r4-X1I" userLabel="Headline">
+                                                    <rect key="frame" x="25" y="16" width="242" height="95"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -87,12 +87,20 @@
                                                         <constraint firstAttribute="width" secondItem="rop-Y1-PPC" secondAttribute="height" multiplier="1:1" id="elV-IU-6LM"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo2-18-4wz">
+                                                    <rect key="frame" x="25" y="112.5" width="40" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="1p1-r4-X1I" firstAttribute="leading" secondItem="mHN-Xv-azh" secondAttribute="leadingMargin" constant="5" id="2Ma-Gx-JF7"/>
                                                 <constraint firstItem="1p1-r4-X1I" firstAttribute="top" secondItem="mHN-Xv-azh" secondAttribute="topMargin" constant="5" id="7EA-Ug-cQ8"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="1p1-r4-X1I" secondAttribute="bottom" constant="5" id="QXa-MA-9wd"/>
+                                                <constraint firstItem="mo2-18-4wz" firstAttribute="leading" secondItem="mHN-Xv-azh" secondAttribute="leadingMargin" constant="5" id="IQH-XO-nHQ"/>
+                                                <constraint firstItem="mo2-18-4wz" firstAttribute="bottomMargin" secondItem="1p1-r4-X1I" secondAttribute="bottom" constant="8" id="QXa-MA-9wd"/>
                                                 <constraint firstItem="rop-Y1-PPC" firstAttribute="top" secondItem="mHN-Xv-azh" secondAttribute="top" constant="5" id="Vg2-uL-XDM"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="mo2-18-4wz" secondAttribute="bottom" constant="2" id="dOg-xT-w9R"/>
                                                 <constraint firstAttribute="trailing" secondItem="rop-Y1-PPC" secondAttribute="trailing" constant="7" id="dPW-6j-BKc"/>
                                                 <constraint firstItem="rop-Y1-PPC" firstAttribute="leading" secondItem="1p1-r4-X1I" secondAttribute="trailing" constant="10" id="gHq-9o-lzk"/>
                                                 <constraint firstAttribute="bottom" secondItem="rop-Y1-PPC" secondAttribute="bottom" constant="5" id="scH-i6-MiV"/>
@@ -101,6 +109,7 @@
                                         <connections>
                                             <outlet property="headlineImage" destination="rop-Y1-PPC" id="tOz-aQ-CfL"/>
                                             <outlet property="headlineLabel" destination="1p1-r4-X1I" id="3V9-Vo-wD9"/>
+                                            <outlet property="headlineSource" destination="mo2-18-4wz" id="YhS-dg-ufU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

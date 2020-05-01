@@ -10,10 +10,10 @@ import Foundation
 
 class NetworkManager {
     
-//    https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=cb3a1eac41554355a9bbf8612b87d638
+    //    https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=cb3a1eac41554355a9bbf8612b87d638
     
     let urlSession = URLSession.shared
-    let topHeadlinesURL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=cb3a1eac41554355a9bbf8612b87d638"
+    //    let topHeadlinesURL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=cb3a1eac41554355a9bbf8612b87d638"
     let baseURL = "https://newsapi.org/v2/"
     let APIKEY = "cb3a1eac41554355a9bbf8612b87d638"
     
@@ -55,7 +55,7 @@ class NetworkManager {
             switch self {
             case .articles:
                 return ["country": "us",
-//                        "category": "\(category)" // This is what's needed to be changed
+                        //                        "category": "\(category)" // This is what's needed to be changed
                 ]
             case .category(let categoryIn):
                 return ["country": "us",
@@ -63,8 +63,6 @@ class NetworkManager {
             case .everything(let qInput):
                 return ["q": qInput]
             }
-            
-            
         }
         
         // Converting paramters to actual url string
@@ -103,9 +101,9 @@ class NetworkManager {
     }
     
     func getArticles(passedInCategory: String, _ completion: @escaping (Result<[Article]>) -> Void)  {
-//        let articleRequest = makeRequest(for: .articles, passIncategory: passedInCategory)
+        //        let articleRequest = makeRequest(for: .articles, passIncategory: passedInCategory)
         let articleRequest = makeRequest(for: .category(categoryIn: passedInCategory))
-
+        
         
         let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
             // If error
@@ -114,9 +112,9 @@ class NetworkManager {
             }
             
             do {
-            let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
-//                print(jsonObject)
-//                print("\n\n\n\n\n")
+                let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
+                //                print(jsonObject)
+                //                print("\n\n\n\n\n")
             } catch {
                 print(error.localizedDescription)
             }
@@ -141,43 +139,43 @@ class NetworkManager {
     }
     
     
-    func getSearchResults(passedInQuery: String, _ completion: @escaping (Result<[Article]>) -> Void)  {
-    //        let articleRequest = makeRequest(for: .articles, passIncategory: passedInCategory)
-            let articleRequest = makeRequest(for: .everything(q: passedInQuery))
-
+    func getSearchArticles(passedInQuery: String, _ completion: @escaping (Result<[Article]>) -> Void)  {
+        //        let articleRequest = makeRequest(for: .articles, passIncategory: passedInCategory)
+        let articleRequest = makeRequest(for: .everything(q: passedInQuery))
+        
+        
+        let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
+            // If error
+            if let error = error {
+                return completion(Result.failure(error))
+            }
             
-            let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
-                // If error
-                if let error = error {
-                    return completion(Result.failure(error))
-                }
-                
-                do {
+            do {
                 let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
-//                    print(jsonObject)
-//                    print("\n\n\n\n\n")
-                } catch {
-                    print(error.localizedDescription)
-                }
-                // If there's data
-                guard let safeData = data else {
-                    return completion(Result.failure(EndPointError.noData))
-                    
-                }
-                // To decode data
-                guard let result = try? JSONDecoder().decode(ArticleList.self, from: safeData) else {
-                    return completion(Result.failure(EndPointError.couldNotParse))
-                }
-                
-                let articles = result.articles
-                
-                DispatchQueue.main.async {
-                    completion(Result.success(articles))
-                }
+                //                    print(jsonObject)
+                //                    print("\n\n\n\n\n")
+            } catch {
+                print(error.localizedDescription)
+            }
+            // If there's data
+            guard let safeData = data else {
+                return completion(Result.failure(EndPointError.noData))
                 
             }
-            task.resume()
+            // To decode data
+            guard let result = try? JSONDecoder().decode(ArticleList.self, from: safeData) else {
+                return completion(Result.failure(EndPointError.couldNotParse))
+            }
+            
+            let articles = result.articles
+            
+            DispatchQueue.main.async {
+                completion(Result.success(articles))
+            }
+            
         }
+        task.resume()
+    }
     
     
 }

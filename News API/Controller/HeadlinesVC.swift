@@ -18,27 +18,15 @@ class HeadlinesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.addSubview(headlinesTableView)
-
+        
         headlinesTableView.delegate = self
         headlinesTableView.dataSource = self
         title = category!
-
+        
         // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
@@ -52,18 +40,18 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "headlineCell", for: indexPath) as! HeadlinesCell
-
-//        cell.backgroundColor = .blue
-//        cell.headlineLabel.text = "test is a test"
-//        cell.headlineLabel.text = headlines[indexPath.row].title
+        
+        //        cell.backgroundColor = .blue
+        //        cell.headlineLabel.text = "test is a test"
+        //        cell.headlineLabel.text = headlines[indexPath.row].title
         cell.setHeadlines(for: headlines[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//        let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
+        //        let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        //        let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
         
         let vc = DetailNewsStoryVC()
         vc.url = headlines[indexPath.row].url

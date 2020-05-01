@@ -17,15 +17,11 @@ class CategoryVC: UIViewController {
     let APIKEY = "cb3a1eac41554355a9bbf8612b87d638"
     let allSources = "https://newsapi.org/v2/sources?apiKey=cb3a1eac41554355a9bbf8612b87d638"
     
-//    var newsSources = [NewsSources]()
-    let category2 = ["General", "Business", "Science", "Technology", "Health", "Entertainment", "Sports"]
+    let category = ["General", "Business", "Science", "Technology", "Health", "Entertainment", "Sports"]
     let uiColors = [#colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1), #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1), #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1), #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)]
-    
-    var category = ["general": "", "business": "", "science": "", "technology": "", "health": "", "entertainment": "", "sports": ""]
     
     let networkManager = NetworkManager()
     var articles: [Article] = []
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,52 +32,10 @@ class CategoryVC: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Homepage"
         searchBar.delegate = self
-        
-        // To hide the keyboard
-        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-        // This to make sure other things are still clickable after hiding keyboard
-        tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
-        
-        
-        
-        
-        //        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-        //        view.addGestureRecognizer(tapGesture)
-        
-        //        fetchNewsSources(url: allSources)
-        
-        //        getArticlesByCategory()
-        
-        
+        searchBar.placeholder = "Search for news"
+        hideKeyboard()
     }
-    
-    //    func getArticlesByCategory() {
-    //        networkManager.getArticles(passedInCategory: "health"){ result in
-    //            switch result {
-    //            case let .success(gotArticles):
-    //                self.articles = gotArticles
-    //            case let .failure(gotError):
-    //                print(gotError)
-    //            }
-    ////                print(result)
-    //        }
-    //    }
-    
-    //    func getSources() {
-    //        for new in newsSources {
-    //            print(new.sources)
-    //        }
-    //    }
-    
-    
-    
 }
-
-//national-geographic,national-geographicnew-scientist,new-scientistnext-big-future,next-big-future
-//national-geographic,new-scientist,next-big-future,
-
-
 
 
 extension CategoryVC: UICollectionViewDataSource {
@@ -93,19 +47,15 @@ extension CategoryVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
         cell.backgroundColor = uiColors[indexPath.row]
-        cell.categoryLabelName.text = category2[indexPath.row]
+        cell.categoryLabelName.text = category[indexPath.row]
         
         // last item in cell
-        if indexPath.row == category2.count - 1 {
+        if indexPath.row == category.count - 1 {
             cell.backgroundColor = .black
             
-
         }
-
         return cell
     }
-    
-    
 }
 
 extension CategoryVC: UICollectionViewDelegate {
@@ -121,7 +71,7 @@ extension CategoryVC: UICollectionViewDelegate {
         //            case let .failure(gotError):
         //                print(gotError)
         //            }
-        let selectedCategory = category2[indexPath.row]
+        let selectedCategory = category[indexPath.row]
         
         networkManager.getArticles(passedInCategory: selectedCategory.lowercased()) { result in
             switch result {
@@ -132,21 +82,16 @@ extension CategoryVC: UICollectionViewDelegate {
                 
                 let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
                 headLineVC.headlines = gotArticles!
-                headLineVC.category = self.category2[indexPath.row]
+                headLineVC.category = self.category[indexPath.row]
                 self.navigationController?.pushViewController(headLineVC, animated: true)
                 
             case let .failure(gotError):
                 print(gotError)
             }
         }
-        
-        
-        
-        
-        
         //        let newsVC = DetailNewsStoryVC()
         //        self.present(newsVC, animated: true, completion: nil)
-    
+        
     }
     
 }
@@ -176,16 +121,24 @@ extension CategoryVC: UICollectionViewDelegateFlowLayout {
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
-
+    
     
     
     
 }
 
-
 //MARK: - Search bar method
 
 extension CategoryVC: UISearchBarDelegate {
+    
+    func hideKeyboard() {
+        // To hide the keyboard
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        // This to make sure other things are still clickable after hiding keyboard
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+        
+    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
@@ -193,7 +146,7 @@ extension CategoryVC: UISearchBarDelegate {
         //        searchBar.endEditing(true)
         self.searchBar.endEditing(true)
         
-        networkManager.getSearchResults(passedInQuery: searchQuery) { result in
+        networkManager.getSearchArticles(passedInQuery: searchQuery) { result in
             switch result {
             case let .success(gotArticles):
                 //                print(gotArticles)
