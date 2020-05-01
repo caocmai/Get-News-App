@@ -8,17 +8,14 @@
 
 import Foundation
 
-public struct NewsSources: Decodable{
-    let status: String
-    var sources : [Source]
-}
 
 public struct Source: Decodable {
-    let id: String
-    let category: String
+    let id: String?
+    let name: String?
 }
 
-public struct Article: Codable {
+public struct Article: Decodable {
+    let source: Source
     let author: String?
     let title: String?
     let description: String?
@@ -27,6 +24,6 @@ public struct Article: Codable {
     let content: String?
 }
 
-public struct ArticleList: Codable{
+public struct ArticleList: Decodable{
     public var articles: [Article]
 }

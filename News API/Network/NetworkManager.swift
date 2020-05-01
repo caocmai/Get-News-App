@@ -154,8 +154,8 @@ class NetworkManager {
                 
                 do {
                 let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
-    //                print(jsonObject)
-    //                print("\n\n\n\n\n")
+//                    print(jsonObject)
+//                    print("\n\n\n\n\n")
                 } catch {
                     print(error.localizedDescription)
                 }

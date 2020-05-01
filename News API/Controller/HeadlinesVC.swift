@@ -55,7 +55,8 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
 
 //        cell.backgroundColor = .blue
 //        cell.headlineLabel.text = "test is a test"
-        cell.headlineLabel.text = headlines[indexPath.row].title
+//        cell.headlineLabel.text = headlines[indexPath.row].title
+        cell.setHeadlines(for: headlines[indexPath.row])
         return cell
     }
     

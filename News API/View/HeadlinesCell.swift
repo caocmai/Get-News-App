@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HeadlinesCell: UITableViewCell {
     
@@ -25,10 +26,35 @@ class HeadlinesCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    
     func setHeadlines(for article: Article) {
-        headlineLabel.text = article.title
+        
+        headlineLabel.translatesAutoresizingMaskIntoConstraints = false
+        headlineImage.translatesAutoresizingMaskIntoConstraints = false
         
         
+        if let safeTitle = article.title {
+            headlineLabel.text = safeTitle
+        }
+        let processor = RoundCornerImageProcessor(cornerRadius: 40)
+        headlineImage.kf.indicatorType = .activity
+
+        
+        if let safeImageURL = article.urlToImage {
+        headlineImage.kf.setImage(with: URL(string: safeImageURL), options: [.processor(processor), .transition(.fade(0.2))]) { result in
+            switch result {
+            case .success(let value):
+//                print(value.image)
+                print("sucess")
+            case .failure(let error):
+//                print(error)
+                print("No IMAGE TO SHOW CAN'T FETCH")
+                self.headlineLabel.trailingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.trailingAnchor).isActive = true
+            }
+            
+        }
+        }
     }
 
 }
