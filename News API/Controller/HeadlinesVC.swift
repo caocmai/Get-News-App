@@ -11,19 +11,15 @@ import UIKit
 class HeadlinesVC: UIViewController {
     
     @IBOutlet weak var headlinesTableView: UITableView!
-    
     var category: String? = nil
-    
     var headlines: [Article] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.addSubview(headlinesTableView)
         headlinesTableView.delegate = self
         headlinesTableView.dataSource = self
         title = category!
-        // Do any additional setup after loading the view.
     }
 }
 

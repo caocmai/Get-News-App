@@ -17,7 +17,6 @@ class ArticleDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
 //        articleTitleLabel.text = "title"
 //        articleText.text = "somthing"
         setContent()
@@ -25,11 +24,9 @@ class ArticleDetailsVC: UIViewController {
     }
     
     func setContent() {
-        print(article!)
+//        print(article!)
         articleTitleLabel.text = article!.title!
         articleText.text = article!.content!
-
-
     }
     
 

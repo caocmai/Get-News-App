@@ -12,11 +12,10 @@ import WebKit
 class DetailNewsStoryVC: UIViewController {
     
     var url: String? = nil
-    let webPage = WKWebView()
+    var webPage = WKWebView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         setUp()
         getWebPage(from: url!)
         view.backgroundColor = .black
@@ -35,7 +34,10 @@ class DetailNewsStoryVC: UIViewController {
     }
     
     func getWebPage(from url: String) {
-        let toURL = URL(string: url)
+        var comps = URLComponents(string: url)!
+        comps.scheme = "https"
+        let https = comps.string!
+        let toURL = URL(string: https)
         let request = URLRequest(url: toURL!)
         webPage.load(request)
     }

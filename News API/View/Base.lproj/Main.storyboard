@@ -243,6 +243,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="KSV-tT-Eqx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dcw-7I-1vK">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -255,11 +256,11 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
-        <!--News by Sources-->
+        <!--Sources-->
         <scene sceneID="ik8-YZ-Pug">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sgj-S2-pGA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News by Sources" image="tray.2" catalog="system" selectedImage="tray.2.fill" id="fFC-h8-ZUM"/>
+                    <tabBarItem key="tabBarItem" title="Sources" image="tray.2" catalog="system" selectedImage="tray.2.fill" id="fFC-h8-ZUM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="so2-ik-RCe">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

@@ -25,12 +25,13 @@ class CategoryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         categoryCollectionView.dataSource = self
         categoryCollectionView.delegate = self
         categoryCollectionView.register(UINib(nibName: "CategoryCell", bundle: .main), forCellWithReuseIdentifier: "categoryCell")
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "News by Category"
+        self.navigationController!.tabBarItem.title = "Categories"
+
         searchBar.delegate = self
         searchBar.placeholder = "Search for news"
         hideKeyboard()
@@ -60,17 +61,6 @@ extension CategoryVC: UICollectionViewDataSource {
 
 extension CategoryVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        let newVS = HeadlinesVC()
-        
-        //        self.present(newVS, animated: true, completion: nil)
-        
-        //        networkManager.getArticles(passedInCategory: "health"){ result in
-        //            switch result {
-        //            case let .success(gotArticles):
-        //                self.articles = gotArticles
-        //            case let .failure(gotError):
-        //                print(gotError)
-        //            }
         let selectedCategory = category[indexPath.row]
         
         networkManager.getArticles(passedInCategory: selectedCategory.lowercased()) { result in
@@ -78,8 +68,6 @@ extension CategoryVC: UICollectionViewDelegate {
             case let .success(gotArticles):
                 //                print(gotArticles)
                 let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                
-                
                 let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
                 headLineVC.headlines = gotArticles!
                 headLineVC.category = self.category[indexPath.row]
@@ -89,11 +77,7 @@ extension CategoryVC: UICollectionViewDelegate {
                 print(gotError)
             }
         }
-        //        let newsVC = DetailNewsStoryVC()
-        //        self.present(newsVC, animated: true, completion: nil)
-        
     }
-    
 }
 
 extension CategoryVC: UICollectionViewDelegateFlowLayout {
@@ -121,9 +105,6 @@ extension CategoryVC: UICollectionViewDelegateFlowLayout {
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
-    
-    
-    
     
 }
 
