@@ -10,13 +10,9 @@ import Foundation
 
 class NetworkManager {
     
-    //    https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=cb3a1eac41554355a9bbf8612b87d638
-    
     let urlSession = URLSession.shared
-    //    let topHeadlinesURL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=cb3a1eac41554355a9bbf8612b87d638"
     let baseURL = "https://newsapi.org/v2/"
-    let APIKEY = "cb3a1eac41554355a9bbf8612b87d638"
-    
+    let APIKEY = "\(Secret.apiKey.rawValue)"
     
     enum EndPoints {
         case articles
@@ -35,9 +31,6 @@ class NetworkManager {
             case .sources:
                 return "sources"
             }
-            
-            
-            
         }
         
         // Get the Http Request method
@@ -187,7 +180,7 @@ class NetworkManager {
     }
     
     func getSources(_ completion: @escaping (Result<AllNewsSources>) -> Void)  {
-   
+        
         let articleRequest = makeRequest(for: .sources)
         
         
@@ -199,8 +192,8 @@ class NetworkManager {
             
             do {
                 let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
-//                                    print(jsonObject)
-//                                    print("\n\n\n\n\n")
+                //                                    print(jsonObject)
+                //                                    print("\n\n\n\n\n")
             } catch {
                 print(error.localizedDescription)
             }
@@ -226,46 +219,42 @@ class NetworkManager {
     
     
     func getArticlesFromSource(from newsSource: String, _ completion: @escaping (Result<[Article]>) -> Void)  {
-    
+        
         let articleRequest = makeRequest(for: .getFromNewsSource(newsSource: newsSource))
-         
-         
-         let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
-                 // If error
-                 if let error = error {
-                     return completion(Result.failure(error))
-                 }
-                 
-                 do {
-                     let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
-                     //                    print(jsonObject)
-                     //                    print("\n\n\n\n\n")
-                 } catch {
-                     print(error.localizedDescription)
-                 }
-                 // If there's data
-                 guard let safeData = data else {
-                     return completion(Result.failure(EndPointError.noData))
-                     
-                 }
-                 // To decode data
-                 guard let result = try? JSONDecoder().decode(ArticleList.self, from: safeData) else {
-                     return completion(Result.failure(EndPointError.couldNotParse))
-                 }
-                 
-                 let articles = result.articles
-                 
-                 DispatchQueue.main.async {
-                     completion(Result.success(articles))
-                 }
-                 
-             }
-             task.resume()
-         }
-    
-    
-    
-    
+        
+        
+        let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
+            // If error
+            if let error = error {
+                return completion(Result.failure(error))
+            }
+            
+            do {
+                let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
+                //                    print(jsonObject)
+                //                    print("\n\n\n\n\n")
+            } catch {
+                print(error.localizedDescription)
+            }
+            // If there's data
+            guard let safeData = data else {
+                return completion(Result.failure(EndPointError.noData))
+                
+            }
+            // To decode data
+            guard let result = try? JSONDecoder().decode(ArticleList.self, from: safeData) else {
+                return completion(Result.failure(EndPointError.couldNotParse))
+            }
+            
+            let articles = result.articles
+            
+            DispatchQueue.main.async {
+                completion(Result.success(articles))
+            }
+            
+        }
+        task.resume()
+    }
 }
 
 

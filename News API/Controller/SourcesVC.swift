@@ -43,7 +43,7 @@ class SourcesVC: UIViewController {
                 print(gotError)
             }
         }
-//        print(sources)
+        //        print(sources)
     }
 }
 
@@ -56,7 +56,7 @@ extension SourcesVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
-//        cell.backgroundColor = uiColors[indexPath.row]
+        //        cell.backgroundColor = uiColors[indexPath.row]
         cell.backgroundColor = .orange
         cell.categoryLabelName.text = sources[indexPath.row].name
         
