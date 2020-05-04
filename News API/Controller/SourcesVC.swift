@@ -57,7 +57,28 @@ extension SourcesVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
         //        cell.backgroundColor = uiColors[indexPath.row]
-        cell.backgroundColor = .orange
+        let sourceCategory = sources[indexPath.row].category
+        
+        switch sourceCategory {
+        case "general":
+            cell.backgroundColor = .blue
+        case "science":
+            cell.backgroundColor = .yellow
+        case "health":
+            cell.backgroundColor = .green
+        case "business":
+            cell.backgroundColor = .red
+        case .some: // Everthing else
+            cell.backgroundColor = .orange
+        case .none: // When there's nil
+            print("none")
+        }
+        
+//        if sources[indexPath.row].category == "general" {
+//            cell.backgroundColor = .blue
+//        } else {
+//            cell.backgroundColor = .orange
+//        }
         cell.categoryLabelName.text = sources[indexPath.row].name
         
         return cell
