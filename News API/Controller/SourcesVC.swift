@@ -11,7 +11,6 @@ import UIKit
 class SourcesVC: UIViewController {
     
     @IBOutlet weak var sourcesCollectionView: UICollectionView!
-    let category = ["BBC", "CNN", "Science", "Technology", "Health", "Entertainment", "Sports"]
     
     var sources : [NewsSource] = [] {
         didSet {
@@ -59,19 +58,38 @@ extension SourcesVC: UICollectionViewDataSource {
         //        cell.backgroundColor = uiColors[indexPath.row]
         let sourceCategory = sources[indexPath.row].category
         
-        switch sourceCategory {
-        case "general":
-            cell.backgroundColor = .blue
-        case "science":
-            cell.backgroundColor = .yellow
-        case "health":
-            cell.backgroundColor = .green
-        case "business":
-            cell.backgroundColor = .red
-        case .some: // Everthing else
-            cell.backgroundColor = .orange
-        case .none: // When there's nil
-            print("none")
+//        switch sourceCategory {
+//        case "general":
+//            cell.backgroundColor = .blue
+//        case "science":
+//            cell.backgroundColor = .yellow
+//        case "health":
+//            cell.backgroundColor = .green
+//        case "business":
+//            cell.backgroundColor = .red
+//        case .some: // Everthing else
+//            cell.backgroundColor = .orange
+//        case .none: // When there's nil
+//            print("none")
+//        }
+//
+        switch sourceCategory?.capitalized {
+        case "General":
+            cell.backgroundColor = ProjectColor.generalColor.rawValue
+        case "Business":
+            cell.backgroundColor = ProjectColor.businessColor.rawValue
+        case "Science":
+            cell.backgroundColor = ProjectColor.scienceColor.rawValue
+        case "Technology":
+            cell.backgroundColor = ProjectColor.techColor.rawValue
+        case "Health":
+            cell.backgroundColor = ProjectColor.healthColor.rawValue
+        case "Entertainment":
+            cell.backgroundColor = ProjectColor.entertainColor.rawValue
+        case "Sports":
+            cell.backgroundColor = ProjectColor.sportsColor.rawValue
+        default:
+            cell.backgroundColor = ProjectColor.generalColor.rawValue
         }
         
 //        if sources[indexPath.row].category == "general" {
@@ -80,6 +98,7 @@ extension SourcesVC: UICollectionViewDataSource {
 //            cell.backgroundColor = .orange
 //        }
         cell.categoryLabelName.text = sources[indexPath.row].name
+        cell.newsSourceCategoryLabel.text = sourceCategory?.capitalized
         
         return cell
     }

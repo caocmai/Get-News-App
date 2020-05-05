@@ -7,14 +7,16 @@
 //
 
 import UIKit
-// Show the source in the tableview, maybe add icon to it, 
+// Show the source in the tableview, maybe add icon to it,
+
 class CategoryVC: UIViewController {
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     let category = ["General", "Business", "Science", "Technology", "Health", "Entertainment", "Sports"]
-    let uiColors = [#colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1), #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1), #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1), #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)]
+    let uiColors = [#colorLiteral(red: 0.1176470588, green: 0.6980392157, blue: 0.6509803922, alpha: 1), #colorLiteral(red: 0.831372549, green: 0.9725490196, blue: 0.9098039216, alpha: 1), #colorLiteral(red: 1, green: 0.6392156863, blue: 0.3019607843, alpha: 1), #colorLiteral(red: 0.9647058824, green: 0.4588235294, blue: 0.4588235294, alpha: 1), #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.8492380977, green: 0, blue: 0.3497368693, alpha: 1)]
+    
     
     let networkManager = NetworkManager()
     var articles: [Article] = []
@@ -31,7 +33,6 @@ class CategoryVC: UIViewController {
         searchBar.delegate = self
         searchBar.placeholder = "Search for news"
         hideKeyboard()
-        print(Secret.apiKey.rawValue)
     }
 }
 
@@ -44,12 +45,35 @@ extension CategoryVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
-        cell.backgroundColor = uiColors[indexPath.row]
-        cell.categoryLabelName.text = category[indexPath.row]
+        let categoryName = category[indexPath.row]
+        
+        switch categoryName {
+        case "General":
+            cell.backgroundColor = ProjectColor.generalColor.rawValue
+        case "Business":
+            cell.backgroundColor = ProjectColor.businessColor.rawValue
+        case "Science":
+            cell.backgroundColor = ProjectColor.scienceColor.rawValue
+        case "Technology":
+            cell.backgroundColor = ProjectColor.techColor.rawValue
+        case "Health":
+            cell.backgroundColor = ProjectColor.healthColor.rawValue
+        case "Entertainment":
+            cell.backgroundColor = ProjectColor.entertainColor.rawValue
+        case "Sports":
+            cell.backgroundColor = ProjectColor.sportsColor.rawValue
+        default:
+            cell.backgroundColor = ProjectColor.generalColor.rawValue
+        }
+        
+        //        cell.backgroundColor = uiColors[indexPath.row]
+        cell.categoryLabelName.text = categoryName
+        cell.newsSourceCategoryLabel.isHidden = true
+        cell.newSourceCategoryColor.isHidden = true
         
         // last item in cell
         if indexPath.row == category.count - 1 {
-            cell.backgroundColor = .black
+            print("last item in array")
             
         }
         return cell
