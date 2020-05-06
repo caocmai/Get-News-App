@@ -15,7 +15,7 @@ class CategoryVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     let category = ["General", "Business", "Science", "Technology", "Health", "Entertainment", "Sports"]
-    let uiColors = [#colorLiteral(red: 0.1176470588, green: 0.6980392157, blue: 0.6509803922, alpha: 1), #colorLiteral(red: 0.831372549, green: 0.9725490196, blue: 0.9098039216, alpha: 1), #colorLiteral(red: 1, green: 0.6392156863, blue: 0.3019607843, alpha: 1), #colorLiteral(red: 0.9647058824, green: 0.4588235294, blue: 0.4588235294, alpha: 1), #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.8492380977, green: 0, blue: 0.3497368693, alpha: 1)]
+//    let uiColors = [#colorLiteral(red: 0.1176470588, green: 0.6980392157, blue: 0.6509803922, alpha: 1), #colorLiteral(red: 0.831372549, green: 0.9725490196, blue: 0.9098039216, alpha: 1), #colorLiteral(red: 1, green: 0.6392156863, blue: 0.3019607843, alpha: 1), #colorLiteral(red: 0.9647058824, green: 0.4588235294, blue: 0.4588235294, alpha: 1), #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.8492380977, green: 0, blue: 0.3497368693, alpha: 1)]
     
     
     let networkManager = NetworkManager()
@@ -112,7 +112,7 @@ extension CategoryVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 3, left: 13, bottom: 10, right: 10)
+        return UIEdgeInsets(top: 3, left: 12, bottom: 10, right: 12)
     }
     
     func collectionView(_ collectionView: UICollectionView,

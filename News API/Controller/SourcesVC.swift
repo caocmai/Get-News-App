@@ -58,45 +58,25 @@ extension SourcesVC: UICollectionViewDataSource {
         //        cell.backgroundColor = uiColors[indexPath.row]
         let sourceCategory = sources[indexPath.row].category
         
-//        switch sourceCategory {
-//        case "general":
-//            cell.backgroundColor = .blue
-//        case "science":
-//            cell.backgroundColor = .yellow
-//        case "health":
-//            cell.backgroundColor = .green
-//        case "business":
-//            cell.backgroundColor = .red
-//        case .some: // Everthing else
-//            cell.backgroundColor = .orange
-//        case .none: // When there's nil
-//            print("none")
-//        }
-//
         switch sourceCategory?.capitalized {
         case "General":
-            cell.backgroundColor = ProjectColor.generalColor.rawValue
+            cell.newSourceCategoryColor.backgroundColor = ProjectColor.generalColor.rawValue
         case "Business":
-            cell.backgroundColor = ProjectColor.businessColor.rawValue
+            cell.newSourceCategoryColor.backgroundColor = ProjectColor.businessColor.rawValue
         case "Science":
-            cell.backgroundColor = ProjectColor.scienceColor.rawValue
+            cell.newSourceCategoryColor.backgroundColor = ProjectColor.scienceColor.rawValue
         case "Technology":
-            cell.backgroundColor = ProjectColor.techColor.rawValue
+            cell.newSourceCategoryColor.backgroundColor = ProjectColor.techColor.rawValue
         case "Health":
-            cell.backgroundColor = ProjectColor.healthColor.rawValue
+            cell.newSourceCategoryColor.backgroundColor = ProjectColor.healthColor.rawValue
         case "Entertainment":
-            cell.backgroundColor = ProjectColor.entertainColor.rawValue
+            cell.newSourceCategoryColor.backgroundColor = ProjectColor.entertainColor.rawValue
         case "Sports":
-            cell.backgroundColor = ProjectColor.sportsColor.rawValue
+            cell.newSourceCategoryColor.backgroundColor = ProjectColor.sportsColor.rawValue
         default:
-            cell.backgroundColor = ProjectColor.generalColor.rawValue
+            cell.newSourceCategoryColor.backgroundColor = ProjectColor.generalColor.rawValue
         }
-        
-//        if sources[indexPath.row].category == "general" {
-//            cell.backgroundColor = .blue
-//        } else {
-//            cell.backgroundColor = .orange
-//        }
+        cell.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.9725490196, blue: 0.9529411765, alpha: 1)
         cell.categoryLabelName.text = sources[indexPath.row].name
         cell.newsSourceCategoryLabel.text = sourceCategory?.capitalized
         
