@@ -52,7 +52,7 @@ class HeadlinesCell: UITableViewCell {
                     print("sucess")
                     self.headlineLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -100).isActive = true
                     if self.headlineImage != nil {
-                        print("test")
+                        print("No headline image")
                     }
                 case .failure(let error):
                     //                print(error)

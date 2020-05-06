@@ -30,20 +30,54 @@ class SourcesVC: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Top News by Source"
         self.navigationController!.tabBarItem.title = "Sources"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort", style: .done, target: self, action: #selector(showOptions(controller:)))
+        
         fetchSources()
+    }
+    
+    @objc func showOptions(controller: UIViewController) {
+        
+        let alert = UIAlertController(title: "Sort By", message: "Choose how news sources are ordered", preferredStyle: .actionSheet)
+        
+        
+        alert.addAction(UIAlertAction(title: "Category", style: .default, handler: { (_) in
+            self.sort(sources: &self.sources)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Source", style: .default, handler: { (_) in
+            self.fetchSources()
+        }))
+
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
+        }))
+        
+        self.present(alert, animated: true, completion:nil)
     }
     
     func fetchSources() {
         networkManager.getSources() { result in
             switch result {
             case let .success(source):
-                self.sources = source!.sources                
+                self.sources = source!.sources
+                
             case let .failure(gotError):
                 print(gotError)
             }
         }
         //        print(sources)
     }
+    
+    func sort(sources: inout [NewsSource]) {
+        sources.sort(by: {
+            var isSorted = false // In order to upwrap the optional
+            if let first = $0.category, let second = $1.category {
+                isSorted = first < second
+            }
+            return isSorted
+        })
+    }
+    
 }
 
 
