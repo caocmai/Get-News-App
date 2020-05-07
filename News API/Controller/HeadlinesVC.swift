@@ -5,7 +5,7 @@
 //  Created by Cao Mai on 4/22/20.
 //  Copyright © 2020 Make School. All rights reserved.
 //
-
+// Need to look at fox sports where they don't have title
 import UIKit
 
 class HeadlinesVC: UIViewController {
@@ -34,7 +34,11 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "headlineCell", for: indexPath) as! HeadlinesCell
-        cell.setHeadlines(for: headlines[indexPath.row])
+        let article = headlines[indexPath.row]
+        if article.title! != "" {
+        cell.setHeadlines(for: article)
+            return cell
+        }
         return cell
     }
     
