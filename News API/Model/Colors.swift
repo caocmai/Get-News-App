@@ -28,7 +28,7 @@ extension ProjectColor: RawRepresentable {
         case #colorLiteral(red: 0.9647058824, green: 0.4588235294, blue: 0.4588235294, alpha: 1): self = .techColor
         case #colorLiteral(red: 1, green: 0.9215686275, blue: 0.6, alpha: 1): self = .healthColor
         case #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1): self = .entertainColor
-        case #colorLiteral(red: 0.8677538037, green: 0.002994516632, blue: 0.3618242145, alpha: 0.8883775685): self = .sportsColor
+        case #colorLiteral(red: 0.4980392157, green: 0.4705882353, blue: 0.8235294118, alpha: 1): self = .sportsColor
             
         default: return nil
         }
@@ -42,7 +42,7 @@ extension ProjectColor: RawRepresentable {
         case .techColor: return #colorLiteral(red: 0.9647058824, green: 0.4588235294, blue: 0.4588235294, alpha: 1)
         case .healthColor: return #colorLiteral(red: 1, green: 0.9215686275, blue: 0.6, alpha: 1)
         case .entertainColor: return #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-        case .sportsColor: return #colorLiteral(red: 0.8677538037, green: 0.002994516632, blue: 0.3618242145, alpha: 0.8883775685)
+        case .sportsColor: return #colorLiteral(red: 0.4980392157, green: 0.4705882353, blue: 0.8235294118, alpha: 1)
             
         }
     }

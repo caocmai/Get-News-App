@@ -31,24 +31,25 @@
                                 <color key="textColor" red="0.53702677536736898" green="0.53702677536736898" blue="0.53702677536736898" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyp-6c-Wg1">
-                                <rect key="frame" x="22.5" y="126" width="33" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g0k-Oj-rTJ">
+                                <rect key="frame" x="40" y="126.5" width="15.5" height="15.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15.5" id="330-Dc-8Dq"/>
+                                    <constraint firstAttribute="height" constant="15.5" id="TzV-Iy-Xvr"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="lmH-if-iAF" firstAttribute="centerX" secondItem="m3C-mv-XGq" secondAttribute="centerX" id="0Wg-Bb-Eq7"/>
                             <constraint firstAttribute="width" constant="150" id="2qw-oj-Zby"/>
                             <constraint firstItem="lmH-if-iAF" firstAttribute="leading" secondItem="m3C-mv-XGq" secondAttribute="leading" constant="4" id="2rg-hf-6gt"/>
                             <constraint firstAttribute="bottom" secondItem="6Cd-Ig-hLz" secondAttribute="bottom" constant="8" id="4BZ-H5-XFz"/>
-                            <constraint firstAttribute="bottom" secondItem="cyp-6c-Wg1" secondAttribute="bottom" constant="8" id="5MX-2E-zFn"/>
-                            <constraint firstItem="6Cd-Ig-hLz" firstAttribute="leading" secondItem="cyp-6c-Wg1" secondAttribute="trailing" constant="3" id="JQJ-Sy-tzp"/>
+                            <constraint firstItem="6Cd-Ig-hLz" firstAttribute="leading" secondItem="g0k-Oj-rTJ" secondAttribute="trailing" constant="3" id="N7c-Lt-D5I"/>
                             <constraint firstItem="6Cd-Ig-hLz" firstAttribute="centerX" secondItem="m3C-mv-XGq" secondAttribute="centerX" id="Nwj-o6-wIj"/>
                             <constraint firstAttribute="trailing" secondItem="lmH-if-iAF" secondAttribute="trailing" constant="4" id="Rnm-2H-3cG"/>
                             <constraint firstAttribute="height" constant="150" id="dTb-fw-ltq"/>
                             <constraint firstItem="lmH-if-iAF" firstAttribute="centerY" secondItem="m3C-mv-XGq" secondAttribute="centerY" id="eOq-Fa-R5j"/>
+                            <constraint firstAttribute="bottom" secondItem="g0k-Oj-rTJ" secondAttribute="bottom" constant="8" id="wMg-Rs-JS5"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -61,10 +62,10 @@
             <size key="customSize" width="150" height="150"/>
             <connections>
                 <outlet property="categoryLabelName" destination="lmH-if-iAF" id="8Rb-Zm-3EM"/>
-                <outlet property="newSourceCategoryColor" destination="cyp-6c-Wg1" id="s0y-Jl-Ua5"/>
+                <outlet property="newSourceCategoryColor" destination="g0k-Oj-rTJ" id="d69-Vc-lVo"/>
                 <outlet property="newsSourceCategoryLabel" destination="6Cd-Ig-hLz" id="tzd-PZ-y6u"/>
             </connections>
-            <point key="canvasLocation" x="210.1449275362319" y="186.16071428571428"/>
+            <point key="canvasLocation" x="197" y="190"/>
         </collectionViewCell>
     </objects>
 </document>

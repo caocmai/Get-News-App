@@ -44,7 +44,7 @@ class SourcesVC: UIViewController {
             self.sort(sources: &self.sources)
         }))
         
-        alert.addAction(UIAlertAction(title: "Source", style: .default, handler: { (_) in
+        alert.addAction(UIAlertAction(title: "Default", style: .default, handler: { (_) in
             self.fetchSources()
         }))
 
@@ -95,10 +95,13 @@ extension SourcesVC: UICollectionViewDataSource {
         switch sourceCategory?.capitalized {
         case "General":
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.generalColor.rawValue
+            
         case "Business":
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.businessColor.rawValue
+
         case "Science":
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.scienceColor.rawValue
+
         case "Technology":
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.techColor.rawValue
         case "Health":
