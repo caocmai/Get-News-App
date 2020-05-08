@@ -29,15 +29,27 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        
+        var rowHeight:CGFloat = 0.0
+
+        // To hide cell without title
+        if headlines[indexPath.row].title == "" {
+            rowHeight = 0.0
+        } else {
+            rowHeight = 100.0
+        }
+        return rowHeight
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "headlineCell", for: indexPath) as! HeadlinesCell
         let article = headlines[indexPath.row]
-        if article.title! != "" {
         cell.setHeadlines(for: article)
-            return cell
+        // To hide cells without a title; have to add this because cells are reused
+        if article.title! == "" {
+            cell.isHidden = true
+        } else {
+            cell.isHidden = false
         }
         return cell
     }
