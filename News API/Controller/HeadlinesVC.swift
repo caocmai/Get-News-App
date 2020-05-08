@@ -30,15 +30,15 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        var rowHeight:CGFloat = 0.0
-
-        // To hide cell without title
-        if headlines[indexPath.row].title == "" {
-            rowHeight = 0.0
-        } else {
-            rowHeight = 100.0
-        }
-        return rowHeight
+//        var rowHeight:CGFloat = 0.0
+//
+//        // To hide cell without title
+//        if headlines[indexPath.row].title == "" {
+//            rowHeight = 0.0
+//        } else {
+//            rowHeight = 100.0
+//        }
+        return 100
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,11 +46,11 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
         let article = headlines[indexPath.row]
         cell.setHeadlines(for: article)
         // To hide cells without a title; have to add this because cells are reused
-        if article.title! == "" {
-            cell.isHidden = true
-        } else {
-            cell.isHidden = false
-        }
+//        if article.title! == "" {
+//            cell.isHidden = true
+//        } else {
+//            cell.isHidden = false
+//        }
         return cell
     }
     
