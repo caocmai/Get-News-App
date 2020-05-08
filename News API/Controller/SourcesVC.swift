@@ -141,7 +141,6 @@ extension SourcesVC: UICollectionViewDelegate {
                 //                print(gotArticles)
                 let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 
-                
                 let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
                 headLineVC.headlines = gotArticles!
                 headLineVC.category = self.sources[indexPath.row].name

@@ -30,7 +30,9 @@ class HeadlinesCell: UITableViewCell {
         
         
         if let safeTitle = article.title {
-            headlineLabel.text = safeTitle
+           
+            let str = safeTitle.components(separatedBy: " - ")[0]
+            headlineLabel.text = str
         }
         
         if let safeSource = article.source.name {
@@ -58,7 +60,7 @@ class HeadlinesCell: UITableViewCell {
                 case .failure(let error):
                     //                print(error)
                     print("No IMAGE TO SHOW CAN'T FETCH")
-                    self.headlineLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
+                    self.headlineLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -5).isActive = true
                 }
                 
             }
