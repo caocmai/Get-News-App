@@ -91,23 +91,21 @@ extension SourcesVC: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
         //        cell.backgroundColor = uiColors[indexPath.row]
         let sourceCategory = sources[indexPath.row].category
+        
         switch sourceCategory?.capitalized {
-        case "General":
+        case K.general:
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.generalColor.rawValue
-            
-        case "Business":
+        case K.business:
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.businessColor.rawValue
-
-        case "Science":
+        case K.science:
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.scienceColor.rawValue
-
-        case "Technology":
+        case K.technology:
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.techColor.rawValue
-        case "Health":
+        case K.health:
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.healthColor.rawValue
-        case "Entertainment":
+        case K.entertainment:
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.entertainColor.rawValue
-        case "Sports":
+        case K.sports:
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.sportsColor.rawValue
         default:
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.generalColor.rawValue

@@ -48,19 +48,19 @@ extension CategoryVC: UICollectionViewDataSource {
         let categoryName = category[indexPath.row]
         
         switch categoryName {
-        case "General":
+        case K.general:
             cell.backgroundColor = ProjectColor.generalColor.rawValue
-        case "Business":
+        case K.business:
             cell.backgroundColor = ProjectColor.businessColor.rawValue
-        case "Science":
+        case K.science:
             cell.backgroundColor = ProjectColor.scienceColor.rawValue
-        case "Technology":
+        case K.technology:
             cell.backgroundColor = ProjectColor.techColor.rawValue
-        case "Health":
+        case K.health:
             cell.backgroundColor = ProjectColor.healthColor.rawValue
-        case "Entertainment":
+        case K.entertainment:
             cell.backgroundColor = ProjectColor.entertainColor.rawValue
-        case "Sports":
+        case K.sports:
             cell.backgroundColor = ProjectColor.sportsColor.rawValue
         default:
             cell.backgroundColor = ProjectColor.generalColor.rawValue
