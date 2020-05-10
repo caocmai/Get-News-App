@@ -1,7 +1,7 @@
 # get-news-app
 
 ## Description
-This app retrieves and display news headlines from the [News API](https://newsapi.org/). Users are able search for the latest headlines and they are also able to view the current top headlines from a list of news sources. 
+This app retrieves and displays the lastest headlines from the [News API](https://newsapi.org/) based on specified category. In addition, users are able search for desired articles within the News API. They also have the option to view the current top headlines from a list of news sources. 
 
 ### Features 
 * Home Screen - get news by category or search for news
@@ -9,8 +9,12 @@ This app retrieves and display news headlines from the [News API](https://newsap
 * Headlines Screen - displays a list of headlines
 * Webview Screen - renders the webpage of the headline
 
-### App Walk-through
-![]()
+### App Screenshots
+![](project_images/homescreen.png) ![](project_images/homescreen.png) ![](project_images/homescreen.png)
+![](project_images/homescreen.png) ![](project_images/homescreen.png) ![](project_images/homescreen.png)
+
+
+
 
 ### Run Locally
 Project code can be viewed locally and run in Xcode's simulator by cloning/downloading or forking this repo.

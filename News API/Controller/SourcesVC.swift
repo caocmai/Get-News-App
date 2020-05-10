@@ -110,7 +110,7 @@ extension SourcesVC: UICollectionViewDataSource {
         default:
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.generalColor.rawValue
         }
-        cell.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.9725490196, blue: 0.9529411765, alpha: 1)
+        cell.backgroundColor = #colorLiteral(red: 0.9561000466, green: 0.941519022, blue: 0.9314298034, alpha: 1)
         cell.categoryLabelName.text = sources[indexPath.row].name
         cell.newsSourceCategoryLabel.text = sourceCategory?.capitalized
         
@@ -162,13 +162,13 @@ extension SourcesVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 150)
+        return CGSize(width: 165, height: 165)
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 3, left: 13, bottom: 10, right: 10)
+        return UIEdgeInsets(top: 3, left: 12, bottom: 10, right: 12)
     }
     
     func collectionView(_ collectionView: UICollectionView,
