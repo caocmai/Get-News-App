@@ -10,13 +10,13 @@ This app retrieves and displays the lastest headlines from the [News API](https:
 * Webview Screen - renders the webpage of the headline
 
 ### App Screenshots
-![](project_images/homeScreen.png) ![](project_images/newsCategory.png) ![](project_images/searchResults.png)
+![](project_images/homeScreen1.png) ![](project_images/newsCategory.png) ![](project_images/searchResults.png)
 ![](project_images/homeScreen.png) ![](project_images/newsCategory.png) ![](project_images/searchResults.png)
 
 
 Solarized dark                      |  Solarized Ocean                     |  Solarized Ocean
 :----------------------------------:|:------------------------------------:|:-------------------------:
-![](project_images/homeScreen.png)  |  ![](project_images/homeScreen.png)  | ![](project_images/homeScreen.png)
+![](project_images/homeScreen1.png)  |  ![](project_images/homeScreen1.png)  | ![](project_images/homeScreen1.png)
 
 
 ### Run Locally
