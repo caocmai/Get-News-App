@@ -10,8 +10,8 @@ This app retrieves and displays the lastest headlines from the [News API](https:
 * Webview Screen - renders the webpage of the headline
 
 ### App Screenshots
-![](project_images/homeview.png) ![](project_images/homeview.png) ![](project_images/homeview.png)
-![](project_images/homeview.png) ![](project_images/homeview.png) ![](project_images/homeview.png)
+![](project_images/homescreen.png) ![](project_images/homescreen.png) ![](project_images/homescreen.png)
+![](project_images/homescreen.png) ![](project_images/homescreen.png) ![](project_images/homescreen.png)
 
 
 
