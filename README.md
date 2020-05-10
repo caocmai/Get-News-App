@@ -5,13 +5,17 @@ This app retrieves and displays the lastest headlines from the [News API](https:
 
 ### Features 
 * Home Screen - get news by category or search for news
-* New Source Screen - get news by sources with ability to sort by the category of the sources
-* Headlines Screen - displays a list of headlines
+* News Sources Screen - get news by sources with ability to sort by the category of the sources
+* Headlines Screen - displays a list of headlines along with their images
 * Webview Screen - renders the webpage of the headline
 
 ### App Screenshots
+![](project_images/homeScreen.png) ![](project_images/newsCategory.png) ![](project_images/searchResults.png)
 ![](project_images/homescreen.png) ![](project_images/homescreen.png) ![](project_images/homescreen.png)
-![](project_images/homescreen.png) ![](project_images/homescreen.png) ![](project_images/homescreen.png)
+
+Solarized dark             |  Solarized Ocean          |  Solarized Ocean
+:-------------------------:|:-------------------------:|:-------------------------:
+![](project_images/homeScreen.png)  |  ![](project_images/homeScreen.png)  | ![](project_images/searchResults.png)
 
 
 
