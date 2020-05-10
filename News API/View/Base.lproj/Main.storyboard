@@ -77,7 +77,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headline" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1p1-r4-X1I" userLabel="Headline">
-                                                    <rect key="frame" x="25" y="16" width="67.5" height="95"/>
+                                                    <rect key="frame" x="20" y="16" width="67.5" height="95"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -86,16 +86,16 @@
                                                     <rect key="frame" x="277" y="5" width="130" height="130"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo2-18-4wz">
-                                                    <rect key="frame" x="25" y="112.5" width="40" height="14.5"/>
+                                                    <rect key="frame" x="20" y="112.5" width="40" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="1p1-r4-X1I" firstAttribute="leading" secondItem="mHN-Xv-azh" secondAttribute="leadingMargin" constant="5" id="2Ma-Gx-JF7"/>
+                                                <constraint firstItem="1p1-r4-X1I" firstAttribute="leading" secondItem="mHN-Xv-azh" secondAttribute="leadingMargin" id="2Ma-Gx-JF7"/>
                                                 <constraint firstItem="1p1-r4-X1I" firstAttribute="top" secondItem="mHN-Xv-azh" secondAttribute="topMargin" constant="5" id="7EA-Ug-cQ8"/>
-                                                <constraint firstItem="mo2-18-4wz" firstAttribute="leading" secondItem="mHN-Xv-azh" secondAttribute="leadingMargin" constant="5" id="IQH-XO-nHQ"/>
+                                                <constraint firstItem="mo2-18-4wz" firstAttribute="leading" secondItem="mHN-Xv-azh" secondAttribute="leadingMargin" id="IQH-XO-nHQ"/>
                                                 <constraint firstItem="mo2-18-4wz" firstAttribute="bottomMargin" secondItem="1p1-r4-X1I" secondAttribute="bottom" constant="8" id="QXa-MA-9wd"/>
                                                 <constraint firstItem="rop-Y1-PPC" firstAttribute="top" secondItem="mHN-Xv-azh" secondAttribute="top" constant="5" id="Vg2-uL-XDM"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="mo2-18-4wz" secondAttribute="bottom" constant="2" id="dOg-xT-w9R"/>

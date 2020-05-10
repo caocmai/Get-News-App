@@ -12,7 +12,7 @@ This app retrieves and displays the lastest headlines from the [News API](https:
 
 ### App Screenshots
 ![](project_images/homeScreen1.png) ![](project_images/newsCategory.png) ![](project_images/searchResults.png)
-![](project_images/newsBySource1.png) ![](project_images/newsByIGN.png) ![](project_images/sortScreen.png)
+![](project_images/newsBySource1.png) ![](project_images/newsByIGN.png) ![](project_images/webpageView.png)
 
 ### Run Locally
 Project code can be viewed locally and run in Xcode's simulator by cloning/downloading or forking this repo.

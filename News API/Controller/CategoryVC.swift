@@ -68,6 +68,7 @@ extension CategoryVC: UICollectionViewDataSource {
         
         //        cell.backgroundColor = uiColors[indexPath.row]
         cell.categoryLabelName.text = categoryName
+        cell.categoryLabelName.textColor = #colorLiteral(red: 0.05834504962, green: 0.05800623447, blue: 0.05861062557, alpha: 1)
         cell.newsSourceCategoryLabel.isHidden = true
         cell.newSourceCategoryColor.isHidden = true
         

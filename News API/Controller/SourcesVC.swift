@@ -112,6 +112,7 @@ extension SourcesVC: UICollectionViewDataSource {
         }
         cell.backgroundColor = #colorLiteral(red: 0.9561000466, green: 0.941519022, blue: 0.9314298034, alpha: 1)
         cell.categoryLabelName.text = sources[indexPath.row].name
+        cell.categoryLabelName.textColor = #colorLiteral(red: 0.05834504962, green: 0.05800623447, blue: 0.05861062557, alpha: 1)
         cell.newsSourceCategoryLabel.text = sourceCategory?.capitalized
         
         return cell
