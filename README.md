@@ -11,13 +11,10 @@ This app retrieves and displays the lastest headlines from the [News API](https:
 
 ### App Screenshots
 ![](project_images/homeScreen.png) ![](project_images/newsCategory.png) ![](project_images/searchResults.png)
-![](project_images/homescreen.png) ![](project_images/homescreen.png) ![](project_images/homescreen.png)
 
-Solarized dark             |  Solarized Ocean          |  Solarized Ocean
-:-------------------------:|:-------------------------:|:-------------------------:
+Solarized dark                      |  Solarized Ocean                     |  Solarized Ocean
+:----------------------------------:|:------------------------------------:|:-------------------------:
 ![](project_images/homeScreen.png)  |  ![](project_images/homeScreen.png)  | ![](project_images/homeScreen.png)
-
-
 
 
 ### Run Locally
