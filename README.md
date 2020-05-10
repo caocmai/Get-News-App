@@ -1,4 +1,4 @@
-# Get New App
+# Get News App
 An iOS app to retrieve the latest headlines from the News API
 
 ## Description
