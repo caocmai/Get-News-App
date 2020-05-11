@@ -1,8 +1,8 @@
 # Get News App
-An iOS app to retrieve the latest headlines from the News API
+An iOS app to retrieve and display the latest headlines from the News API
 
 ## Description
-This app retrieves and displays the lastest headlines from the [News API](https://newsapi.org/) based on specified category. In addition, users are able search for desired articles within the News API. They also have the option to view the current top headlines from a list of news sources. 
+This app grabs the lastest headlines from the [News API](https://newsapi.org/) along with associated images by various methods. Users are able search for desired articles within the News API or get headlines based on the category. They also have the option to view the current top headlines from a list of news sources. 
 
 ### Features 
 * Home Screen - get news by category or search for news
