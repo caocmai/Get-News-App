@@ -33,6 +33,6 @@ This project contain a file called "Secret.swift", which contains my personal AP
 
 Inside the Secret.swift file you should add the following:
 
-enum Secret: String {
-    case apiKey = "your unique API key goes here"
+enum Secret: String { <br>
+    case apiKey = "your unique API key goes here" <br>
 }

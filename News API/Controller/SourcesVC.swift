@@ -18,7 +18,6 @@ class SourcesVC: UIViewController {
         }
     }
     
-    let uiColors = [#colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1), #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1), #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1), #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)]
     let networkManager = NetworkManager()
     var articles: [Article] = []
     
@@ -151,9 +150,7 @@ extension SourcesVC: UICollectionViewDelegate {
                 print(gotError)
             }
         }
-        //        let newsVC = DetailNewsStoryVC()
-        //        self.present(newsVC, animated: true, completion: nil)
-        
+
     }
     
 }
