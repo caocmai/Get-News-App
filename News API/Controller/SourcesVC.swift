@@ -12,11 +12,16 @@ class SourcesVC: UIViewController {
     
     @IBOutlet weak var sourcesCollectionView: UICollectionView!
     
+    @IBOutlet weak var search: UISearchBar!
+    
     var sources : [NewsSource] = [] {
         didSet {
+            self.filteredSources = sources
             sourcesCollectionView.reloadData()
         }
     }
+    
+    var filteredSources: [NewsSource] = []
     
     let networkManager = NetworkManager()
     var articles: [Article] = []
@@ -30,8 +35,11 @@ class SourcesVC: UIViewController {
         title = "Top News by Source"
         self.navigationController!.tabBarItem.title = "Sources"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort", style: .done, target: self, action: #selector(showOptions(controller:)))
-        
+        search.delegate = self
+        search.placeholder = "Search for news sources"
+        hideKeyboard()
         fetchSources()
+
     }
     
     @objc func showOptions(controller: UIViewController) {
@@ -82,14 +90,14 @@ class SourcesVC: UIViewController {
 
 extension SourcesVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sources.count
+        return filteredSources.count
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
         //        cell.backgroundColor = uiColors[indexPath.row]
-        let sourceCategory = sources[indexPath.row].category
+        let sourceCategory = filteredSources[indexPath.row].category
         
         switch sourceCategory?.capitalized {
         case K.general:
@@ -110,7 +118,7 @@ extension SourcesVC: UICollectionViewDataSource {
             cell.newSourceCategoryColor.backgroundColor = ProjectColor.generalColor.rawValue
         }
         cell.backgroundColor = #colorLiteral(red: 0.9561000466, green: 0.941519022, blue: 0.9314298034, alpha: 1)
-        cell.categoryLabelName.text = sources[indexPath.row].name
+        cell.categoryLabelName.text = filteredSources[indexPath.row].name
         cell.categoryLabelName.textColor = #colorLiteral(red: 0.05834504962, green: 0.05800623447, blue: 0.05861062557, alpha: 1)
         cell.newsSourceCategoryLabel.text = sourceCategory?.capitalized
         
@@ -131,9 +139,11 @@ extension SourcesVC: UICollectionViewDelegate {
         //            case let .failure(gotError):
         //                print(gotError)
         //            }
-        guard let selectedSource = sources[indexPath.row].id else {
+        guard let selectedSource = filteredSources[indexPath.row].id else {
             return
         }
+        
+        print(selectedSource)
         
         networkManager.getArticlesFromSource(from: selectedSource) { result in
             switch result {
@@ -143,7 +153,7 @@ extension SourcesVC: UICollectionViewDelegate {
                 
                 let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
                 headLineVC.headlines = gotArticles!
-                headLineVC.category = self.sources[indexPath.row].name
+                headLineVC.category = self.filteredSources[indexPath.row].name
                 self.navigationController?.pushViewController(headLineVC, animated: true)
                 
             case let .failure(gotError):
@@ -184,3 +194,53 @@ extension SourcesVC: UICollectionViewDelegateFlowLayout {
 }
 
 
+extension SourcesVC: UISearchBarDelegate {
+    
+    func hideKeyboard() {
+        // To hide the keyboard
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        // This to make sure other things are still clickable after hiding keyboard
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+        
+    }
+    
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        print(searchBar.text!)
+//        if searchBar.text! == "" {
+//            self.filteredSources = sources
+//            self.sourcesCollectionView.reloadData()
+//        } else {
+//            self.filteredSources = sources.compactMap {$0}.filter({($0.name?.contains(searchBar.text!.lowercased()))!})
+//            print(self.filteredSources)
+//            self.sourcesCollectionView.reloadData()
+//
+//        }
+//
+//    }
+
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+        if searchText == "" {
+            self.filteredSources = sources
+            self.sourcesCollectionView.reloadData()
+        } else {
+            self.filteredSources = sources.compactMap {$0}.filter({($0.name?.lowercased().contains(searchText.lowercased()))!})
+            print(self.filteredSources)
+            self.sourcesCollectionView.reloadData()
+            
+        }
+        
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        if searchBar.text != "" {
+            return true
+        } else {
+            searchBar.placeholder = "Search for news sources"
+            return false
+        }
+    }
+    
+}

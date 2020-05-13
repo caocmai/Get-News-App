@@ -138,7 +138,6 @@ extension CategoryVC: UISearchBarDelegate {
         // This to make sure other things are still clickable after hiding keyboard
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
-        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -150,7 +149,7 @@ extension CategoryVC: UISearchBarDelegate {
         var searchQuery = ""
         for letter in searchQueryText {
             if letter == " " {
-                searchQuery += "%20"
+                searchQuery += "%20" // To deal with space
             }else {
                 searchQuery += String(letter)
             }

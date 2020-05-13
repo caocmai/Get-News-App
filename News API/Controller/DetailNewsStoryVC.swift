@@ -37,7 +37,7 @@ class DetailNewsStoryVC: UIViewController {
         var comps = URLComponents(string: url)!
         comps.scheme = "https"
         let https = comps.string!
-        print(https)
+//        print(https)
         let toURL = URL(string: https)
         let request = URLRequest(url: toURL!)
         webPage.load(request)

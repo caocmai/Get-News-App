@@ -93,7 +93,7 @@ class NetworkManager {
         let path = endPoint.getPath() // Get the first part of URL
         let stringParams = endPoint.paramsToString()
         let fullURL = URL(string: baseURL.appending("\(path)?\(stringParams)"))!
-        print(fullURL)
+//        print(fullURL)
         var request = URLRequest(url: fullURL)
         request.httpMethod = endPoint.getHTTPRequestMethod()
         request.allHTTPHeaderFields = endPoint.getHeaders(secretKey: APIKEY)

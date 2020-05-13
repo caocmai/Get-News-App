@@ -8,9 +8,6 @@
 
 import Foundation
 
-let category = ["General", "Business", "Science", "Technology", "Health", "Entertainment", "Sports"]
-
-
 struct K {
     static let general = "General"
     static let business = "Business"

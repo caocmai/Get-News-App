@@ -24,7 +24,7 @@ class HeadlinesCell: UITableViewCell {
         
         headlineLabel.translatesAutoresizingMaskIntoConstraints = false
         headlineImage.translatesAutoresizingMaskIntoConstraints = false
-//        headlineImage.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        headlineImage.heightAnchor.constraint(equalToConstant: 100).isActive = true
         headlineImage.widthAnchor.constraint(equalTo: headlineImage.heightAnchor, multiplier: 12/9).isActive = true
 
         
@@ -52,9 +52,13 @@ class HeadlinesCell: UITableViewCell {
                     self.headlineLabel.trailingAnchor.constraint(equalTo: self.headlineImage.leadingAnchor, constant: -5).isActive = true
                     self.headlineImage.image = value.image
 
-                    if self.headlineImage != nil {
+                    DispatchQueue.main.async {
+                        if self.headlineImage == nil {
                         print("No headline image")
-//                        self.headlineLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
+                                                    self.headlineLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -5).isActive = true
+
+                    }
+                    
 
                     }
                 case .failure(let error):

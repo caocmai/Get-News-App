@@ -28,18 +28,18 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
         return headlines.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        var rowHeight:CGFloat = 0.0
-
-        // To hide cell without title
-        if headlines[indexPath.row].title == "" {
-            rowHeight = 0.0
-        } else {
-            rowHeight = 100.0
-        }
-        return rowHeight
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        
+//        var rowHeight:CGFloat = 0.0
+//
+//        // To hide cell without title
+//        if headlines[indexPath.row].title == "" {
+//            rowHeight = 0.0
+//        } else {
+//            rowHeight = 100.0
+//        }
+//        return rowHeight
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "headlineCell", for: indexPath) as! HeadlinesCell

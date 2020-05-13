@@ -69,24 +69,24 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headlineCell" rowHeight="140" id="yOZ-Xh-mBq" userLabel="HeadlinesCell" customClass="HeadlinesCell" customModule="News_API" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="140"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headlineCell" id="yOZ-Xh-mBq" userLabel="HeadlinesCell" customClass="HeadlinesCell" customModule="News_API" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yOZ-Xh-mBq" id="mHN-Xv-azh">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headline" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1p1-r4-X1I" userLabel="Headline">
-                                                    <rect key="frame" x="20" y="16" width="67.5" height="95"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headline" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1p1-r4-X1I" userLabel="Headline">
+                                                    <rect key="frame" x="20" y="16" width="67.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rop-Y1-PPC">
-                                                    <rect key="frame" x="277" y="5" width="130" height="130"/>
+                                                    <rect key="frame" x="277" y="5" width="130" height="56"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo2-18-4wz">
-                                                    <rect key="frame" x="20" y="112.5" width="40" height="14.5"/>
+                                                    <rect key="frame" x="20" y="38.5" width="40" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -195,7 +195,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rDA-lZ-dic" userLabel="Source CollectionView">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="136" width="414" height="677"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="w10-zX-8PX">
                                     <size key="itemSize" width="50" height="50"/>
@@ -214,18 +214,29 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="DLA-yn-YYu">
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="cWi-rt-sb3"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="DLA-yn-YYu" firstAttribute="trailing" secondItem="n1w-CH-6Ju" secondAttribute="trailing" id="0vZ-kU-ltj"/>
+                            <constraint firstItem="DLA-yn-YYu" firstAttribute="top" secondItem="n1w-CH-6Ju" secondAttribute="top" id="Ie9-Pz-Fpc"/>
                             <constraint firstItem="n1w-CH-6Ju" firstAttribute="bottom" secondItem="rDA-lZ-dic" secondAttribute="bottom" id="LYX-Vj-K6d"/>
-                            <constraint firstItem="rDA-lZ-dic" firstAttribute="top" secondItem="n1w-CH-6Ju" secondAttribute="top" id="a2t-6S-m9X"/>
                             <constraint firstItem="rDA-lZ-dic" firstAttribute="leading" secondItem="n1w-CH-6Ju" secondAttribute="leading" id="gVG-c1-nz5"/>
                             <constraint firstItem="n1w-CH-6Ju" firstAttribute="trailing" secondItem="rDA-lZ-dic" secondAttribute="trailing" id="kSK-DK-VQR"/>
+                            <constraint firstItem="DLA-yn-YYu" firstAttribute="leading" secondItem="n1w-CH-6Ju" secondAttribute="leading" id="qcV-4h-NcR"/>
+                            <constraint firstItem="rDA-lZ-dic" firstAttribute="top" secondItem="DLA-yn-YYu" secondAttribute="bottom" constant="4" id="wfU-Nk-s95"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="n1w-CH-6Ju"/>
                     </view>
                     <navigationItem key="navigationItem" id="6If-nu-bMz"/>
                     <connections>
+                        <outlet property="search" destination="DLA-yn-YYu" id="CMH-nP-E93"/>
                         <outlet property="sourcesCollectionView" destination="rDA-lZ-dic" id="oet-IW-Rsu"/>
                     </connections>
                 </viewController>
