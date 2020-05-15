@@ -36,7 +36,7 @@ class SourcesVC: UIViewController {
         self.navigationController!.tabBarItem.title = "Sources"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort", style: .done, target: self, action: #selector(showOptions(controller:)))
         search.delegate = self
-        search.placeholder = "Search for news sources"
+        search.placeholder = "Filter news sources"
         hideKeyboard()
         fetchSources()
 
@@ -48,7 +48,7 @@ class SourcesVC: UIViewController {
         
         
         alert.addAction(UIAlertAction(title: "Category", style: .default, handler: { (_) in
-            self.sort(sources: &self.sources)
+            self.sort(sources: &self.filteredSources)
         }))
         
         alert.addAction(UIAlertAction(title: "Default", style: .default, handler: { (_) in

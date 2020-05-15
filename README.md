@@ -6,13 +6,13 @@ This app grabs the lastest headlines from the [News API](https://newsapi.org/) a
 
 ### Features 
 * Home Screen - get news by category or search for news
-* News Sources Screen - get news by sources with ability to sort by the category of the sources
+* News Sources Screen - get news by sources with ability to filter desired sources and sort by the category of the sources
 * Headlines Screen - displays a list of headlines along with their images
 * Webview Screen - renders the webpage of the headline
 
 ### App Screenshots
 ![](project_images/homeScreen1.png) ![](project_images/newsCategory.png) ![](project_images/searchResults.png)
-![](project_images/newsBySource1.png) ![](project_images/newsByIGN.png) ![](project_images/webpageView.png)
+![](project_images/newsBySource.png) ![](project_images/newsByIGN.png) ![](project_images/webpageView.png)
 
 ### Run Locally
 Project code can be viewed locally and run in Xcode's simulator by cloning/downloading or forking this repo.
