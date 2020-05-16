@@ -11,8 +11,8 @@ This app grabs the lastest headlines from the [News API](https://newsapi.org/) a
 * Webview Screen - renders the webpage of the headline
 
 ### App Screenshots
-![](project_images/homeScreen1.png) ![](project_images/newsCategory.png) ![](project_images/searchResults.png)
-![](project_images/newsBySource.png) ![](project_images/newsByIGN.png) ![](project_images/webpageView.png)
+![](project_images/homeScreen.png) ![](project_images/newsCategory.png) ![](project_images/searchResults.png)
+![](project_images/newsBySource1.png) ![](project_images/newsByIGN.png) ![](project_images/webpageView.png)
 
 ### Run Locally
 Project code can be viewed locally and run in Xcode's simulator by cloning/downloading or forking this repo.
