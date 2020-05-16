@@ -26,7 +26,7 @@ Project code can be viewed locally and run in Xcode's simulator by cloning/downl
 https://www.makeschool.com/portfolio/Cao-Mai
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
 
 ## Note
 This project contains a file called "Secret.swift", which contains my personal API key to the [News API](https://newsapi.org/). When cloning this project you must create that file and add your own API key to be able to run the project. 
