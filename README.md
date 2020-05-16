@@ -34,5 +34,5 @@ This project contains a file called "Secret.swift", which contains my personal A
 Inside the Secret.swift file you should add the following:
 
 enum Secret: String { <br>
-    case apiKey = "your unique API key goes here" <br>
+&nbsp;&nbsp;&nbsp;&nbsp;case apiKey = "your unique API key goes here" <br>
 }
