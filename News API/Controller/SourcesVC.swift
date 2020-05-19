@@ -49,6 +49,7 @@ class SourcesVC: UIViewController {
         
         alert.addAction(UIAlertAction(title: "Category", style: .default, handler: { (_) in
             self.sort(sources: &self.filteredSources)
+            self.sourcesCollectionView.reloadData()
         }))
         
         alert.addAction(UIAlertAction(title: "Default", style: .default, handler: { (_) in

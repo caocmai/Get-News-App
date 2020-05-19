@@ -20,7 +20,7 @@ Project code can be viewed locally and run in Xcode's simulator by cloning/downl
 ## Built With
 * [Xcode - 11.3.1](https://developer.apple.com/xcode/) - The IDE used
 * [Swift - 5.1.4](https://developer.apple.com/swift/) - Programming language
-* [Kingfisher](https://github.com/onevcat/Kingfisher) - 3rd party library
+* [Kingfisher - 5.14.0](https://github.com/onevcat/Kingfisher) - 3rd party library
 
 ## Author
 * Cao Mai - portfolio can be found at:
