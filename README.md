@@ -36,7 +36,6 @@ Inside the Secret.swift file you should add the following:
 
 ```swift
 enum Secret: String {
-    case apiKey = "your unique API key goes here" <br>
+    case apiKey = "your unique API key goes here"
 }
 ```
-
