@@ -61,7 +61,7 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
         vc.url = headlines[indexPath.row].url
         self.navigationController?.pushViewController(vc, animated: true)
         
-        // To display contents from New API article
+        // To display contents from New API article // Note currently used but like to keep as reference
         //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "articleDetailsVC") as! ArticleDetailsVC
         //        vc.article = headlines[indexPath.row]
         //        self.navigationController?.pushViewController(vc, animated: true)

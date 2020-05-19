@@ -11,7 +11,6 @@ import UIKit
 class SourcesVC: UIViewController {
     
     @IBOutlet weak var sourcesCollectionView: UICollectionView!
-    
     @IBOutlet weak var search: UISearchBar!
     
     var sources : [NewsSource] = [] {
@@ -206,6 +205,7 @@ extension SourcesVC: UISearchBarDelegate {
         
     }
     
+    // Trying to hide keyboard when users changes mind of searching
 //    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 //        print(searchBar.text!)
 //        if searchBar.text! == "" {

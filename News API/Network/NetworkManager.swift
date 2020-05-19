@@ -52,18 +52,21 @@ class NetworkManager {
         func getParams() -> [String: String] {
             switch self {
             case .articles:
-                return ["country": "us",
-                        //                        "category": "\(category)" // This is what's needed to be changed
-                ]
+                return ["country": "us"
+                        ]
             case .category(let categoryIn):
                 return ["country": "us",
-                        "category": categoryIn]
+                        "category": categoryIn
+                        ]
             case .everything(let qInput):
-                return ["q": qInput]
+                return ["q": qInput
+                        ]
             case .sources:
-                return ["language": "en"]
+                return ["language": "en"
+                        ]
             case .getFromNewsSource(let inputNewsSource):
-                return ["sources": inputNewsSource]
+                return ["sources": inputNewsSource
+                        ]
             }
         }
         
@@ -71,7 +74,6 @@ class NetworkManager {
         func paramsToString() -> String {
             let parameterArray = getParams().map{ key, value in
                 return "\(key)=\(value)"
-                
             }
             
             return parameterArray.joined(separator: "&")
@@ -114,6 +116,7 @@ class NetworkManager {
             }
             
             do {
+                // Testing to see if got the proper json back
                 let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
                 //                print(jsonObject)
                 //                print("\n\n\n\n\n")
@@ -153,6 +156,7 @@ class NetworkManager {
             }
             
             do {
+                // Testing to see if got the proper json back
                 let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
                 //                    print(jsonObject)
                 //                    print("\n\n\n\n\n")
@@ -191,6 +195,7 @@ class NetworkManager {
             }
             
             do {
+                // Testing to see if got the proper json back
                 let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
                 //                                    print(jsonObject)
                 //                                    print("\n\n\n\n\n")
@@ -230,6 +235,7 @@ class NetworkManager {
             }
             
             do {
+                // Testing to see if got the proper json back
                 let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
                 //                    print(jsonObject)
                 //                    print("\n\n\n\n\n")
