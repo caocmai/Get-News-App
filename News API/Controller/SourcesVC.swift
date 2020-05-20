@@ -12,12 +12,20 @@ class SourcesVC: UIViewController {
     
     @IBOutlet weak var sourcesCollectionView: UICollectionView!
     @IBOutlet weak var search: UISearchBar!
-
     
+    enum Section {
+      case main
+    }
+    
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, NewsSource>
+    private lazy var dataSource = makeDataSource()
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, NewsSource>
+
     var sources : [NewsSource] = [] {
         didSet {
             self.filteredSources = sources
-            sourcesCollectionView.reloadData()
+//            sourcesCollectionView.reloadData()
+            applySnapshot() // Calling this instead of reloading collectionview
         }
     }
     
@@ -26,11 +34,53 @@ class SourcesVC: UIViewController {
     let networkManager = NetworkManager()
     var articles: [Article] = []
     
+    func makeDataSource() -> DataSource {
+        let dataSource = DataSource(collectionView: sourcesCollectionView, cellProvider:  { (collectionView, indexPath, sources) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
+            
+            let sourceCategory = self.filteredSources[indexPath.row].category
+                                    
+                  switch sourceCategory?.capitalized {
+                  case K.general:
+                      cell.newSourceCategoryColor.backgroundColor = ProjectColor.generalColor.rawValue
+                  case K.business:
+                      cell.newSourceCategoryColor.backgroundColor = ProjectColor.businessColor.rawValue
+                  case K.science:
+                      cell.newSourceCategoryColor.backgroundColor = ProjectColor.scienceColor.rawValue
+                  case K.technology:
+                      cell.newSourceCategoryColor.backgroundColor = ProjectColor.techColor.rawValue
+                  case K.health:
+                      cell.newSourceCategoryColor.backgroundColor = ProjectColor.healthColor.rawValue
+                  case K.entertainment:
+                      cell.newSourceCategoryColor.backgroundColor = ProjectColor.entertainColor.rawValue
+                  case K.sports:
+                      cell.newSourceCategoryColor.backgroundColor = ProjectColor.sportsColor.rawValue
+                  default:
+                      cell.newSourceCategoryColor.backgroundColor = ProjectColor.generalColor.rawValue
+                  }
+                  cell.backgroundColor = #colorLiteral(red: 0.9561000466, green: 0.941519022, blue: 0.9314298034, alpha: 1)
+            cell.categoryLabelName.text = self.filteredSources[indexPath.row].name
+                  cell.categoryLabelName.textColor = #colorLiteral(red: 0.05834504962, green: 0.05800623447, blue: 0.05861062557, alpha: 1)
+                  cell.newsSourceCategoryLabel.text = sourceCategory?.capitalized
+            return cell
+        })
+        return dataSource
+    }
+    
+    func applySnapshot(animatingDifferences: Bool = true) {
+        var localSnapchat = Snapshot()
+        localSnapchat.appendSections([.main])
+        localSnapchat.appendItems(filteredSources)
+        dataSource.apply(localSnapchat, animatingDifferences: animatingDifferences)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchSources()
         configureCollectionView()
         configureNavbarAndSearchbar()
-        fetchSources()
+        applySnapshot(animatingDifferences: false)
     }
     
     func configureCollectionView() {
@@ -55,7 +105,8 @@ class SourcesVC: UIViewController {
         
         alert.addAction(UIAlertAction(title: "Category", style: .default, handler: { (_) in
             self.sort(sources: &self.filteredSources)
-            self.sourcesCollectionView.reloadData()
+//            self.sourcesCollectionView.reloadData()
+            self.applySnapshot()
         }))
         alert.addAction(UIAlertAction(title: "Default", style: .default, handler: { (_) in
             self.fetchSources()
@@ -88,7 +139,6 @@ class SourcesVC: UIViewController {
             return isSorted
         })
     }
-    
 }
 
 
@@ -101,31 +151,31 @@ extension SourcesVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
         //        cell.backgroundColor = uiColors[indexPath.row]
-        let sourceCategory = filteredSources[indexPath.row].category
-        
-        switch sourceCategory?.capitalized {
-        case K.general:
-            cell.newSourceCategoryColor.backgroundColor = ProjectColor.generalColor.rawValue
-        case K.business:
-            cell.newSourceCategoryColor.backgroundColor = ProjectColor.businessColor.rawValue
-        case K.science:
-            cell.newSourceCategoryColor.backgroundColor = ProjectColor.scienceColor.rawValue
-        case K.technology:
-            cell.newSourceCategoryColor.backgroundColor = ProjectColor.techColor.rawValue
-        case K.health:
-            cell.newSourceCategoryColor.backgroundColor = ProjectColor.healthColor.rawValue
-        case K.entertainment:
-            cell.newSourceCategoryColor.backgroundColor = ProjectColor.entertainColor.rawValue
-        case K.sports:
-            cell.newSourceCategoryColor.backgroundColor = ProjectColor.sportsColor.rawValue
-        default:
-            cell.newSourceCategoryColor.backgroundColor = ProjectColor.generalColor.rawValue
-        }
-        cell.backgroundColor = #colorLiteral(red: 0.9561000466, green: 0.941519022, blue: 0.9314298034, alpha: 1)
-        cell.categoryLabelName.text = filteredSources[indexPath.row].name
-        cell.categoryLabelName.textColor = #colorLiteral(red: 0.05834504962, green: 0.05800623447, blue: 0.05861062557, alpha: 1)
-        cell.newsSourceCategoryLabel.text = sourceCategory?.capitalized
-        
+//        let sourceCategory = filteredSources[indexPath.row].category
+//                
+//        switch sourceCategory?.capitalized {
+//        case K.general:
+//            cell.newSourceCategoryColor.backgroundColor = ProjectColor.generalColor.rawValue
+//        case K.business:
+//            cell.newSourceCategoryColor.backgroundColor = ProjectColor.businessColor.rawValue
+//        case K.science:
+//            cell.newSourceCategoryColor.backgroundColor = ProjectColor.scienceColor.rawValue
+//        case K.technology:
+//            cell.newSourceCategoryColor.backgroundColor = ProjectColor.techColor.rawValue
+//        case K.health:
+//            cell.newSourceCategoryColor.backgroundColor = ProjectColor.healthColor.rawValue
+//        case K.entertainment:
+//            cell.newSourceCategoryColor.backgroundColor = ProjectColor.entertainColor.rawValue
+//        case K.sports:
+//            cell.newSourceCategoryColor.backgroundColor = ProjectColor.sportsColor.rawValue
+//        default:
+//            cell.newSourceCategoryColor.backgroundColor = ProjectColor.generalColor.rawValue
+//        }
+//        cell.backgroundColor = #colorLiteral(red: 0.9561000466, green: 0.941519022, blue: 0.9314298034, alpha: 1)
+//        cell.categoryLabelName.text = filteredSources[indexPath.row].name
+//        cell.categoryLabelName.textColor = #colorLiteral(red: 0.05834504962, green: 0.05800623447, blue: 0.05861062557, alpha: 1)
+//        cell.newsSourceCategoryLabel.text = sourceCategory?.capitalized
+//        
         return cell
     }
 }
@@ -227,16 +277,29 @@ extension SourcesVC: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
-        if searchText == "" {
-            self.filteredSources = sources
-            self.sourcesCollectionView.reloadData()
-        } else {
-            self.filteredSources = sources.compactMap {$0}.filter({($0.name?.lowercased().contains(searchText.lowercased()))!})
-            print(self.filteredSources)
-            self.sourcesCollectionView.reloadData()
-            
-        }
-        
+//        if searchText == "" {
+//            self.filteredSources = sources
+//            self.sourcesCollectionView.reloadData()
+//        } else {
+//            self.filteredSources = sources.compactMap {$0}.filter({($0.name?.lowercased().contains(searchText.lowercased()))!})
+//            print(self.filteredSources)
+//            self.sourcesCollectionView.reloadData()
+//
+//        }
+        //Appying snapshots instead
+        filteredSources = filteredSearch(for: searchText)
+        applySnapshot()
+    }
+    
+    func filteredSearch(for queryOrNil: String?) -> [NewsSource] {
+        let allNewSources = self.sources
+      guard let query = queryOrNil, !query.isEmpty
+        else {
+          return allNewSources
+      }
+      return allNewSources.filter {
+        return $0.name!.lowercased().contains(query.lowercased())
+      }
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {

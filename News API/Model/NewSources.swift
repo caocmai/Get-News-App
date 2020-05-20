@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NewsSource: Decodable {
+public struct NewsSource: Decodable, Hashable {
     let id: String?
     let name: String?
     let category: String?

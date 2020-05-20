@@ -46,11 +46,11 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
         let article = headlines[indexPath.row]
         cell.setHeadlines(for: article)
         // To hide cells without a title; have to add this because cells are reused
-        if article.title! == "" {
-            cell.isHidden = true
-        } else {
-            cell.isHidden = false
-        }
+//        if article.title! == "" {
+//            cell.isHidden = true
+//        } else {
+//            cell.isHidden = false
+//        }
         return cell
     }
     
