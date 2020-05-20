@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum ProjectColor {
+enum CategoryColor {
     case generalColor
     case businessColor
     case scienceColor
@@ -17,7 +17,7 @@ enum ProjectColor {
     case entertainColor
     case sportsColor
 }
-extension ProjectColor: RawRepresentable {
+extension CategoryColor: RawRepresentable {
     typealias RawValue = UIColor
     
     init?(rawValue: RawValue) {

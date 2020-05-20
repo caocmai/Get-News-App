@@ -28,7 +28,7 @@ class CategoryVC: UIViewController {
     func configureCollectionView() {
         categoryCollectionView.dataSource = self
         categoryCollectionView.delegate = self
-        categoryCollectionView.register(UINib(nibName: "CategoryCell", bundle: .main), forCellWithReuseIdentifier: "categoryCell")
+        categoryCollectionView.register(UINib(nibName: K.categoryCell, bundle: .main), forCellWithReuseIdentifier: K.categoryCellID)
     }
     
     func configureNavbarAndSearchbar() {
@@ -51,26 +51,26 @@ extension CategoryVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.categoryCellID, for: indexPath) as! CategoryCell
         let categoryName = category[indexPath.row]
         
         switch categoryName {
         case K.general:
-            cell.backgroundColor = ProjectColor.generalColor.rawValue
+            cell.backgroundColor = CategoryColor.generalColor.rawValue
         case K.business:
-            cell.backgroundColor = ProjectColor.businessColor.rawValue
+            cell.backgroundColor = CategoryColor.businessColor.rawValue
         case K.science:
-            cell.backgroundColor = ProjectColor.scienceColor.rawValue
+            cell.backgroundColor = CategoryColor.scienceColor.rawValue
         case K.technology:
-            cell.backgroundColor = ProjectColor.techColor.rawValue
+            cell.backgroundColor = CategoryColor.techColor.rawValue
         case K.health:
-            cell.backgroundColor = ProjectColor.healthColor.rawValue
+            cell.backgroundColor = CategoryColor.healthColor.rawValue
         case K.entertainment:
-            cell.backgroundColor = ProjectColor.entertainColor.rawValue
+            cell.backgroundColor = CategoryColor.entertainColor.rawValue
         case K.sports:
-            cell.backgroundColor = ProjectColor.sportsColor.rawValue
+            cell.backgroundColor = CategoryColor.sportsColor.rawValue
         default:
-            cell.backgroundColor = ProjectColor.generalColor.rawValue
+            cell.backgroundColor = CategoryColor.generalColor.rawValue
         }
         
         //        cell.backgroundColor = uiColors[indexPath.row]
@@ -97,7 +97,7 @@ extension CategoryVC: UICollectionViewDelegate {
             case let .success(gotArticles):
                 //                print(gotArticles)
                 let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
+                let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: K.headlinesCellID) as! HeadlinesVC
                 headLineVC.headlines = gotArticles!
                 headLineVC.category = self.category[indexPath.row]
                 self.navigationController?.pushViewController(headLineVC, animated: true)
@@ -172,7 +172,7 @@ extension CategoryVC: UISearchBarDelegate {
                 let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 
                 
-                let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "headlinesVC") as! HeadlinesVC
+                let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: K.headlinesCellID) as! HeadlinesVC
                 headLineVC.headlines = gotArticles!
                 if gotArticles!.isEmpty {
                     headLineVC.category = "No Results for \(searchQueryText)"

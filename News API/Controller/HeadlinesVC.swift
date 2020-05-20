@@ -28,8 +28,8 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
         return headlines.count
     }
     
+    // Set table height
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        
 //        var rowHeight:CGFloat = 0.0
 //
 //        // To hide cell without title
@@ -61,7 +61,7 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
         vc.url = headlines[indexPath.row].url
         self.navigationController?.pushViewController(vc, animated: true)
         
-        // To display contents from New API article // Note currently used but like to keep as reference
+        // To display contents from New API article // Note currently not used but like to keep as reference
         //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "articleDetailsVC") as! ArticleDetailsVC
         //        vc.article = headlines[indexPath.row]
         //        self.navigationController?.pushViewController(vc, animated: true)

@@ -21,14 +21,9 @@ class CategoryCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         self.layer.cornerRadius = 9
-        newSourceCategoryColor.backgroundColor = .yellow
-//        newSourceCategoryColor.text = "LL" // Placehold to have that size
-//        newSourceCategoryColor.textColor = .clear
+        // To indicate category color
         newSourceCategoryColor.layer.masksToBounds = true
         newSourceCategoryColor.layer.cornerRadius  = 15
-//        imageViewTest.isHidden = true
-//        imageViewTest.layer.cornerRadius = 15
-//        imageViewTest.clipsToBounds = true
     }
     
    

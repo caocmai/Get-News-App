@@ -16,4 +16,8 @@ struct K {
     static let health = "Health"
     static let entertainment = "Entertainment"
     static let sports = "Sports"
+    static let categoryCell = "CategoryCell"
+    static let categoryCellID = "categoryCell"
+    static let headlinesCell = "HeadlinesCell"
+    static let headlinesCellID = "headlinesVC"
 }

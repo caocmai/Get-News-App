@@ -27,11 +27,8 @@ class HeadlinesCell: UITableViewCell {
         headlineImage.heightAnchor.constraint(equalToConstant: 100).isActive = true
         headlineImage.widthAnchor.constraint(equalTo: headlineImage.heightAnchor, multiplier: 12/9).isActive = true
 
-        
-        
         if let safeTitle = article.title {
-           
-            let str = safeTitle.components(separatedBy: " - ")[0]
+            let str = safeTitle.components(separatedBy: " - ")[0] // Remove everything after " - "
             headlineLabel.text = str
         }
         
