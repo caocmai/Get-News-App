@@ -12,6 +12,7 @@ class SourcesVC: UIViewController {
     
     @IBOutlet weak var sourcesCollectionView: UICollectionView!
     @IBOutlet weak var search: UISearchBar!
+
     
     var sources : [NewsSource] = [] {
         didSet {
@@ -27,9 +28,18 @@ class SourcesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureCollectionView()
+        configureNavbarAndSearchbar()
+        fetchSources()
+    }
+    
+    func configureCollectionView() {
         sourcesCollectionView.dataSource = self
         sourcesCollectionView.delegate = self
         sourcesCollectionView.register(UINib(nibName: "CategoryCell", bundle: .main), forCellWithReuseIdentifier: "categoryCell")
+    }
+    
+    func configureNavbarAndSearchbar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Top News by Source"
         self.navigationController!.tabBarItem.title = "Sources"
@@ -37,25 +47,19 @@ class SourcesVC: UIViewController {
         search.delegate = self
         search.placeholder = "Filter news sources"
         hideKeyboard()
-        fetchSources()
-
     }
     
     @objc func showOptions(controller: UIViewController) {
         
         let alert = UIAlertController(title: "Sort By", message: "Choose how news sources are ordered", preferredStyle: .actionSheet)
         
-        
         alert.addAction(UIAlertAction(title: "Category", style: .default, handler: { (_) in
             self.sort(sources: &self.filteredSources)
             self.sourcesCollectionView.reloadData()
         }))
-        
         alert.addAction(UIAlertAction(title: "Default", style: .default, handler: { (_) in
             self.fetchSources()
         }))
-
-        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
         }))
         
@@ -65,8 +69,8 @@ class SourcesVC: UIViewController {
     func fetchSources() {
         networkManager.getSources() { result in
             switch result {
-            case let .success(source):
-                self.sources = source!.sources
+            case let .success(returnedSources):
+                self.sources = returnedSources!.sources
                 
             case let .failure(gotError):
                 print(gotError)

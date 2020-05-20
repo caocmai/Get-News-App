@@ -21,9 +21,17 @@ class CategoryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureCollectionView()
+        configureNavbarAndSearchbar()
+    }
+    
+    func configureCollectionView() {
         categoryCollectionView.dataSource = self
         categoryCollectionView.delegate = self
         categoryCollectionView.register(UINib(nibName: "CategoryCell", bundle: .main), forCellWithReuseIdentifier: "categoryCell")
+    }
+    
+    func configureNavbarAndSearchbar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "News by Category"
         self.navigationController!.tabBarItem.title = "Categories"
@@ -31,6 +39,7 @@ class CategoryVC: UIViewController {
         searchBar.delegate = self
         searchBar.placeholder = "Search for news"
         hideKeyboard()
+        
     }
 }
 

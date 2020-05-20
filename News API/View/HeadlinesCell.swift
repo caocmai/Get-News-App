@@ -51,16 +51,6 @@ class HeadlinesCell: UITableViewCell {
                     print("sucess")
                     self.headlineLabel.trailingAnchor.constraint(equalTo: self.headlineImage.leadingAnchor, constant: -5).isActive = true
                     self.headlineImage.image = value.image
-
-                    DispatchQueue.main.async {
-                        if self.headlineImage == nil {
-                        print("No headline image")
-                                                    self.headlineLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -5).isActive = true
-
-                    }
-                    
-
-                    }
                 case .failure(let error):
                     //                print(error)
                     print("No IMAGE TO SHOW CAN'T FETCH")
