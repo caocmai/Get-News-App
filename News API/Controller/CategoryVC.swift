@@ -15,10 +15,9 @@ class CategoryVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     let category = ["General", "Business", "Science", "Technology", "Health", "Entertainment", "Sports"]
-    var currentAPICallPage = 1
-    
     let networkManager = NetworkManager()
     var articles: [Article] = []
+    let startingPageForAPI = "1"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +35,9 @@ class CategoryVC: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "News by Category"
         self.navigationController!.tabBarItem.title = "Categories"
-        
         searchBar.delegate = self
         searchBar.placeholder = "Search for news"
         hideKeyboard()
-        
     }
 }
 
@@ -88,7 +85,7 @@ extension CategoryVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCategory = category[indexPath.row]
         
-        networkManager.getArticles(passedInCategory: selectedCategory.lowercased(), passedInPageNumber: String(currentAPICallPage)) { result in
+        networkManager.getArticles(passedInCategory: selectedCategory.lowercased(), passedInPageNumber: startingPageForAPI) { result in
             switch result {
             case let .success(gotArticles):
                 //                print(gotArticles)

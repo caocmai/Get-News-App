@@ -25,7 +25,7 @@ class SourcesVC: UIViewController {
     let networkManager = NetworkManager()
     var articles: [Article] = []
     
-    enum Section {
+    enum Section { // For creating snapshots
         case main
     }
     // These 3 lines of code are applicable for snapshots along with main section
@@ -44,7 +44,6 @@ class SourcesVC: UIViewController {
     // These two methods are for snapshots
     func makeDataSource() -> DataSource {
         let dataSource = DataSource(collectionView: sourcesCollectionView, cellProvider:  { (collectionView, indexPath, sources) -> UICollectionViewCell? in
-            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.categoryCellID, for: indexPath) as! CategoryCell
             let sourceCategory = self.filteredSources[indexPath.row].category
             
@@ -143,7 +142,6 @@ class SourcesVC: UIViewController {
 extension SourcesVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredSources.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -169,9 +167,7 @@ extension SourcesVC: UICollectionViewDelegate {
         guard let selectedSource = filteredSources[indexPath.row].id else {
             return
         }
-        
-        print(selectedSource)
-        
+                
         networkManager.getArticlesFromSource(from: selectedSource) { result in
             switch result {
             case let .success(gotArticles):
@@ -180,7 +176,7 @@ extension SourcesVC: UICollectionViewDelegate {
                 
                 let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: K.headlinesCellID) as! HeadlinesVC
                 headLineVC.headlines = gotArticles!
-                headLineVC.category = self.filteredSources[indexPath.row].name
+                headLineVC.sourceName = self.filteredSources[indexPath.row].name
                 self.navigationController?.pushViewController(headLineVC, animated: true)
                 
             case let .failure(gotError):
@@ -224,7 +220,6 @@ extension SourcesVC: UISearchBarDelegate {
         // This to make sure other things are still clickable after hiding keyboard
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
-        
     }
     
     // Trying to hide keyboard when users changes mind of searching
@@ -241,7 +236,6 @@ extension SourcesVC: UISearchBarDelegate {
     //        }
     //
     //    }
-    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)

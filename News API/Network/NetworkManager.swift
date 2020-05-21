@@ -20,9 +20,9 @@ class NetworkManager {
         case everything(q: String)
         case sources
         case getFromNewsSource(newsSource: String)
+        
         // Get Path
         func getPath() -> String {
-            
             switch self {
             case .articles, .category, .getFromNewsSource:
                 return "top-headlines"
@@ -53,21 +53,21 @@ class NetworkManager {
             switch self {
             case .articles:
                 return ["country": "us"
-                        ]
+                ]
             case .category(let categoryIn, let pageNum):
                 return ["country": "us",
                         "category": categoryIn,
                         "page": pageNum
-                        ]
+                ]
             case .everything(let qInput):
                 return ["q": qInput
-                        ]
+                ]
             case .sources:
                 return ["language": "en"
-                        ]
+                ]
             case .getFromNewsSource(let inputNewsSource):
                 return ["sources": inputNewsSource
-                        ]
+                ]
             }
         }
         
@@ -95,20 +95,18 @@ class NetworkManager {
     private func makeRequest(for endPoint: EndPoints) -> URLRequest {
         let path = endPoint.getPath() // Get the first part of URL
         let stringParams = endPoint.paramsToString()
-        let fullURL = URL(string: baseURL.appending("\(path)?\(stringParams)"))!
-        print("\n\n\n\n", fullURL)
-        var request = URLRequest(url: fullURL)
+        let fullURL = URL(string: baseURL.appending("\(path)?\(stringParams)"))
+        //        print(fullURL)
+        var request = URLRequest(url: fullURL!)
         request.httpMethod = endPoint.getHTTPRequestMethod()
         request.allHTTPHeaderFields = endPoint.getHeaders(secretKey: APIKEY)
-        print("\(String(describing: request.allHTTPHeaderFields))")
+        //        print("\(String(describing: request.allHTTPHeaderFields))")
         return request
         
     }
     
     func getArticles(passedInCategory: String, passedInPageNumber: String, _ completion: @escaping (Result<[Article]>) -> Void)  {
-        //        let articleRequest = makeRequest(for: .articles, passIncategory: passedInCategory)
         let articleRequest = makeRequest(for: .category(categoryIn: passedInCategory, pageNumber: passedInPageNumber))
-        
         
         let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
             // If error
@@ -119,8 +117,8 @@ class NetworkManager {
             do {
                 // Testing to see if got the proper json back
                 let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
-                //                print(jsonObject)
-                //                print("\n\n\n\n\n")
+                //                                print(jsonObject)
+                //                                print("\n\n\n\n\n")
             } catch {
                 print(error.localizedDescription)
             }
@@ -139,16 +137,12 @@ class NetworkManager {
             DispatchQueue.main.async {
                 completion(Result.success(articles))
             }
-            
         }
         task.resume()
     }
     
-    
     func getSearchArticles(passedInQuery: String, _ completion: @escaping (Result<[Article]>) -> Void)  {
-        //        let articleRequest = makeRequest(for: .articles, passIncategory: passedInCategory)
         let articleRequest = makeRequest(for: .everything(q: passedInQuery))
-        
         
         let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
             // If error
@@ -179,15 +173,12 @@ class NetworkManager {
             DispatchQueue.main.async {
                 completion(Result.success(articles))
             }
-            
         }
         task.resume()
     }
     
     func getSources(_ completion: @escaping (Result<AllNewsSources>) -> Void)  {
-        
         let articleRequest = makeRequest(for: .sources)
-        
         
         let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
             // If error
@@ -218,16 +209,12 @@ class NetworkManager {
             DispatchQueue.main.async {
                 completion(Result.success(sources))
             }
-            
         }
         task.resume()
     }
     
-    
     func getArticlesFromSource(from newsSource: String, _ completion: @escaping (Result<[Article]>) -> Void)  {
-        
         let articleRequest = makeRequest(for: .getFromNewsSource(newsSource: newsSource))
-        
         
         let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
             // If error
@@ -258,7 +245,6 @@ class NetworkManager {
             DispatchQueue.main.async {
                 completion(Result.success(articles))
             }
-            
         }
         task.resume()
     }

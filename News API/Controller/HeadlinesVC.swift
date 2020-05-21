@@ -12,15 +12,30 @@ class HeadlinesVC: UIViewController {
     
     @IBOutlet weak var headlinesTableView: UITableView!
     var category: String? = nil
+    var sourceName: String? = nil
     var headlines: [Article] = []
     var currentAPICallPage = 1
+    let networkCall = NetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableView()
+        setUpTitle()
+    }
+    
+    func setUpTitle() {
+        if category != nil {
+            self.title = category
+        }
+        if sourceName != nil {
+            self.title = sourceName
+        }
+    }
+    
+    func configureTableView() {
         view.addSubview(headlinesTableView)
         headlinesTableView.delegate = self
         headlinesTableView.dataSource = self
-        title = category!
     }
 }
 
@@ -30,34 +45,43 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     // Set table height
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        var rowHeight:CGFloat = 0.0
-//
-//        // To hide cell without title
-//        if headlines[indexPath.row].title == "" {
-//            rowHeight = 0.0
-//        } else {
-//            rowHeight = 100.0
-//        }
-//        return rowHeight
-//    }
+    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    //        var rowHeight:CGFloat = 0.0
+    //
+    //        // To hide cell without title
+    //        if headlines[indexPath.row].title == "" {
+    //            rowHeight = 0.0
+    //        } else {
+    //            rowHeight = 100.0
+    //        }
+    //        return rowHeight
+    //    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "headlineCell", for: indexPath) as! HeadlinesCell
         let article = headlines[indexPath.row]
         cell.setHeadlines(for: article)
         // To hide cells without a title; have to add this because cells are reused
-//        if article.title! == "" {
-//            cell.isHidden = true
-//        } else {
-//            cell.isHidden = false
-//        }
+        //        if article.title! == "" {
+        //            cell.isHidden = true
+        //        } else {
+        //            cell.isHidden = false
+        //        }
         
         // last item in cell
-        if indexPath.row == headlines.count - 1 {
-            currentAPICallPage += 1
-            print("last item in array")
-            
+        if category != nil {
+            if indexPath.row == headlines.count - 1 {
+                currentAPICallPage += 1
+                networkCall.getArticles(passedInCategory: category!, passedInPageNumber: String(currentAPICallPage)) { result in
+                    switch result {
+                    case let .success(moreArticles):
+                        self.headlines.append(contentsOf: moreArticles!)
+                        self.headlinesTableView.reloadData()
+                    case let .failure(gotError):
+                        print(gotError)
+                    }
+                }
+            }
         }
         return cell
     }
