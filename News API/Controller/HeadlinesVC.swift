@@ -13,6 +13,7 @@ class HeadlinesVC: UIViewController {
     @IBOutlet weak var headlinesTableView: UITableView!
     var category: String? = nil
     var headlines: [Article] = []
+    var currentAPICallPage = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,13 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
 //        } else {
 //            cell.isHidden = false
 //        }
+        
+        // last item in cell
+        if indexPath.row == headlines.count - 1 {
+            currentAPICallPage += 1
+            print("last item in array")
+            
+        }
         return cell
     }
     

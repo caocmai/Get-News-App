@@ -16,7 +16,7 @@ class NetworkManager {
     
     enum EndPoints {
         case articles
-        case category(categoryIn: String)
+        case category(categoryIn: String, pageNumber: String)
         case everything(q: String)
         case sources
         case getFromNewsSource(newsSource: String)
@@ -54,9 +54,10 @@ class NetworkManager {
             case .articles:
                 return ["country": "us"
                         ]
-            case .category(let categoryIn):
+            case .category(let categoryIn, let pageNum):
                 return ["country": "us",
-                        "category": categoryIn
+                        "category": categoryIn,
+                        "page": pageNum
                         ]
             case .everything(let qInput):
                 return ["q": qInput
@@ -95,7 +96,7 @@ class NetworkManager {
         let path = endPoint.getPath() // Get the first part of URL
         let stringParams = endPoint.paramsToString()
         let fullURL = URL(string: baseURL.appending("\(path)?\(stringParams)"))!
-//        print(fullURL)
+        print("\n\n\n\n", fullURL)
         var request = URLRequest(url: fullURL)
         request.httpMethod = endPoint.getHTTPRequestMethod()
         request.allHTTPHeaderFields = endPoint.getHeaders(secretKey: APIKEY)
@@ -104,9 +105,9 @@ class NetworkManager {
         
     }
     
-    func getArticles(passedInCategory: String, _ completion: @escaping (Result<[Article]>) -> Void)  {
+    func getArticles(passedInCategory: String, passedInPageNumber: String, _ completion: @escaping (Result<[Article]>) -> Void)  {
         //        let articleRequest = makeRequest(for: .articles, passIncategory: passedInCategory)
-        let articleRequest = makeRequest(for: .category(categoryIn: passedInCategory))
+        let articleRequest = makeRequest(for: .category(categoryIn: passedInCategory, pageNumber: passedInPageNumber))
         
         
         let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in

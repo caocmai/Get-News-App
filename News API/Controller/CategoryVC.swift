@@ -15,6 +15,7 @@ class CategoryVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     let category = ["General", "Business", "Science", "Technology", "Health", "Entertainment", "Sports"]
+    var currentAPICallPage = 1
     
     let networkManager = NetworkManager()
     var articles: [Article] = []
@@ -79,11 +80,6 @@ extension CategoryVC: UICollectionViewDataSource {
         cell.newsSourceCategoryLabel.isHidden = true
         cell.newSourceCategoryColor.isHidden = true
         
-        // last item in cell
-        if indexPath.row == category.count - 1 {
-            print("last item in array")
-            
-        }
         return cell
     }
 }
@@ -92,7 +88,7 @@ extension CategoryVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCategory = category[indexPath.row]
         
-        networkManager.getArticles(passedInCategory: selectedCategory.lowercased()) { result in
+        networkManager.getArticles(passedInCategory: selectedCategory.lowercased(), passedInPageNumber: String(currentAPICallPage)) { result in
             switch result {
             case let .success(gotArticles):
                 //                print(gotArticles)
