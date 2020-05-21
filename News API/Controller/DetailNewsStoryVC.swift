@@ -19,7 +19,6 @@ class DetailNewsStoryVC: UIViewController {
         setUp()
         getWebPage(from: url!)
         view.backgroundColor = .black
-        
     }
     
     func setUp(){

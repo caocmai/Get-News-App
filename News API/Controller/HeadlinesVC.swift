@@ -13,6 +13,7 @@ class HeadlinesVC: UIViewController {
     @IBOutlet weak var headlinesTableView: UITableView!
     var category: String? = nil
     var sourceName: String? = nil
+    var searchQuery: String? = nil
     var headlines: [Article] = []
     var currentAPICallPage = 1
     let networkCall = NetworkManager()
@@ -29,6 +30,9 @@ class HeadlinesVC: UIViewController {
         }
         if sourceName != nil {
             self.title = sourceName
+        }
+        if searchQuery != nil {
+            self.title = searchQuery
         }
     }
     

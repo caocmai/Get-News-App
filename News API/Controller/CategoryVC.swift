@@ -127,7 +127,6 @@ extension CategoryVC: UICollectionViewDelegateFlowLayout {
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
-    
 }
 
 //MARK: - Search bar method
@@ -143,36 +142,33 @@ extension CategoryVC: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         let searchQueryText = searchBar.text!
         searchBar.endEditing(true)
         
         // This to handle spaces
-        var searchQuery = ""
+        var properSearchQuery = ""
         for letter in searchQueryText {
             if letter == " " {
-                searchQuery += "%20" // To deal with space
+                properSearchQuery += "%20" // To deal with space
             }else {
-                searchQuery += String(letter)
+                properSearchQuery += String(letter)
             }
-            
         }
         
-        networkManager.getSearchArticles(passedInQuery: searchQuery) { result in
+        networkManager.getSearchArticles(passedInQuery: properSearchQuery) { result in
             switch result {
             case let .success(gotArticles):
                 //                print(gotArticles)
-                let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let getStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 
-                
-                let headLineVC  = sampleStoryBoard.instantiateViewController(withIdentifier: K.headlinesCellID) as! HeadlinesVC
+                let headLineVC  = getStoryBoard.instantiateViewController(withIdentifier: K.headlinesCellID) as! HeadlinesVC
                 headLineVC.headlines = gotArticles!
                 if gotArticles!.isEmpty {
-                    headLineVC.category = "No Results for \(searchQueryText)"
+                    headLineVC.searchQuery = "No Results for \(searchQueryText)"
                     self.navigationController?.pushViewController(headLineVC, animated: true)
                     
                 }else {
-                    headLineVC.category = "Results for \(searchQueryText)"
+                    headLineVC.searchQuery = "Results for \(searchQueryText)"
                     self.navigationController?.pushViewController(headLineVC, animated: true)
                 }
                 

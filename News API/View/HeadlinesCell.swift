@@ -21,7 +21,6 @@ class HeadlinesCell: UITableViewCell {
     }
     
     func setHeadlines(for article: Article) {
-        
         headlineLabel.translatesAutoresizingMaskIntoConstraints = false
         headlineImage.translatesAutoresizingMaskIntoConstraints = false
         headlineImage.heightAnchor.constraint(equalToConstant: 100).isActive = true
@@ -39,7 +38,6 @@ class HeadlinesCell: UITableViewCell {
         let processor = RoundCornerImageProcessor(cornerRadius: 40)
         headlineImage.kf.indicatorType = .activity
         
-        
         if let safeImageURL = article.urlToImage {
             headlineImage.kf.setImage(with: URL(string: safeImageURL), options: [.processor(processor), .transition(.fade(0.2))]) { result in
                 switch result {
@@ -53,9 +51,7 @@ class HeadlinesCell: UITableViewCell {
                     print("No IMAGE TO SHOW CAN'T FETCH")
                     self.headlineLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -5).isActive = true
                 }
-                
             }
         }
     }
-    
 }
