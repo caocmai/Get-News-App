@@ -95,6 +95,7 @@ class SourcesVC: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort", style: .done, target: self, action: #selector(showAlertOptions(controller:)))
         search.delegate = self
         search.placeholder = "Filter news sources"
+        search.returnKeyType = UIReturnKeyType.done
         hideKeyboard()
     }
     
@@ -212,6 +213,7 @@ extension SourcesVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
+//MARK: - Searchbar
 
 extension SourcesVC: UISearchBarDelegate {
     func hideKeyboard() {
@@ -272,6 +274,10 @@ extension SourcesVC: UISearchBarDelegate {
             searchBar.placeholder = "Search for news sources"
             return false
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        search.resignFirstResponder() // To dismiss keyboard w/ return tapped
     }
     
 }
