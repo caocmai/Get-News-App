@@ -29,7 +29,11 @@ class CategoryVC: UIViewController {
         categoryCollectionView.dataSource = self
         categoryCollectionView.delegate = self
         categoryCollectionView.register(UINib(nibName: K.categoryCell, bundle: .main), forCellWithReuseIdentifier: K.categoryCellID)
+
     }
+    
+
+
     
     func configureNavbarAndSearchbar() {
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -102,32 +106,32 @@ extension CategoryVC: UICollectionViewDelegate {
     }
 }
 
-extension CategoryVC: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 165, height: 165)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 17, bottom: 10, right: 17)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 40
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-}
+//extension CategoryVC: UICollectionViewDelegateFlowLayout {
+//
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: 165, height: 165)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets(top: 5, left: 17, bottom: 10, right: 17)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 40
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 10
+//    }
+//}
 
 //MARK: - Search bar method
 
@@ -188,3 +192,6 @@ extension CategoryVC: UISearchBarDelegate {
     }
     
 }
+
+
+
