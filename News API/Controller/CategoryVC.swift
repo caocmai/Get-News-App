@@ -17,7 +17,6 @@ class CategoryVC: UIViewController {
     let category = ["General", "Business", "Science", "Technology", "Health", "Entertainment", "Sports"]
     let networkManager = NetworkManager()
     var articles: [Article] = []
-    let startingPageForAPI = "1"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +88,7 @@ extension CategoryVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCategory = category[indexPath.row]
         
-        networkManager.getArticles(passedInCategory: selectedCategory.lowercased(), passedInPageNumber: startingPageForAPI) { result in
+        networkManager.getArticles(passedInCategory: selectedCategory.lowercased()) { result in
             switch result {
             case let .success(gotArticles):
                 //                print(gotArticles)
