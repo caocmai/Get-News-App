@@ -22,7 +22,6 @@ class SourcesVC: UIViewController {
     }
     
     var filteredSources: [NewsSource] = []
-    let networkManager = NetworkManager()
     var articles: [Article] = []
     
     enum Section { // For creating snapshots
@@ -117,7 +116,7 @@ class SourcesVC: UIViewController {
     }
     
     func fetchSources() {
-        networkManager.getSources() { result in
+        NetworkManager.singleton.getSources() { result in
             switch result {
             case let .success(returnedSources):
                 self.sources = returnedSources!.sources
@@ -169,7 +168,7 @@ extension SourcesVC: UICollectionViewDelegate {
             return
         }
                 
-        networkManager.getArticlesFromSource(from: selectedSource) { result in
+        NetworkManager.singleton.getArticlesFromSource(from: selectedSource) { result in
             switch result {
             case let .success(gotArticles):
                 //                print(gotArticles)

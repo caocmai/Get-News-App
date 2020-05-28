@@ -10,6 +10,8 @@ import Foundation
 
 class NetworkManager {
     
+    static let singleton = NetworkManager()
+    
     let urlSession = URLSession.shared
     let baseURL = "https://newsapi.org/v2/"
     let APIKEY = "\(Secret.apiKey.rawValue)" // Your API Key goes here

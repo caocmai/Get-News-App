@@ -16,7 +16,6 @@ class HeadlinesVC: UIViewController {
     var searchQuery: String? = nil
     var headlines: [Article] = []
     var currentAPICallPage = 1
-    let networkCall = NetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +75,7 @@ extension HeadlinesVC: UITableViewDataSource, UITableViewDelegate{
         if category != nil {
             if indexPath.row == headlines.count - 1 {
                 currentAPICallPage += 1
-                networkCall.getArticles(passedInCategory: category!, passedInPageNumber: String(currentAPICallPage)) { result in
+                NetworkManager.singleton.getArticles(passedInCategory: category!, passedInPageNumber: String(currentAPICallPage)) { result in
                     switch result {
                     case let .success(moreArticles):
                         self.headlines.append(contentsOf: moreArticles!)

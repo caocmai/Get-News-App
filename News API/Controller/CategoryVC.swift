@@ -15,7 +15,6 @@ class CategoryVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     let category = ["General", "Business", "Science", "Technology", "Health", "Entertainment", "Sports"]
-    let networkManager = NetworkManager()
     var articles: [Article] = []
     
     override func viewDidLoad() {
@@ -28,11 +27,8 @@ class CategoryVC: UIViewController {
         categoryCollectionView.dataSource = self
         categoryCollectionView.delegate = self
         categoryCollectionView.register(UINib(nibName: K.categoryCell, bundle: .main), forCellWithReuseIdentifier: K.categoryCellID)
-
+        
     }
-    
-
-
     
     func configureNavbarAndSearchbar() {
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -41,6 +37,7 @@ class CategoryVC: UIViewController {
         searchBar.delegate = self
         searchBar.placeholder = "Search for news"
         hideKeyboard()
+        
     }
 }
 
@@ -88,7 +85,7 @@ extension CategoryVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCategory = category[indexPath.row]
         
-        networkManager.getArticles(passedInCategory: selectedCategory.lowercased()) { result in
+        NetworkManager.singleton.getArticles(passedInCategory: selectedCategory.lowercased()) { result in
             switch result {
             case let .success(gotArticles):
                 //                print(gotArticles)
@@ -158,7 +155,7 @@ extension CategoryVC: UISearchBarDelegate {
             }
         }
         
-        networkManager.getSearchArticles(passedInQuery: properSearchQuery) { result in
+        NetworkManager.singleton.getSearchArticles(passedInQuery: properSearchQuery) { result in
             switch result {
             case let .success(gotArticles):
                 //                print(gotArticles)
@@ -189,8 +186,8 @@ extension CategoryVC: UISearchBarDelegate {
             return false
         }
     }
-    
 }
+
 
 
 
