@@ -27,7 +27,6 @@ class CategoryVC: UIViewController {
         categoryCollectionView.dataSource = self
         categoryCollectionView.delegate = self
         categoryCollectionView.register(UINib(nibName: K.categoryCell, bundle: .main), forCellWithReuseIdentifier: K.categoryCellID)
-        
     }
     
     func configureNavbarAndSearchbar() {
@@ -37,7 +36,6 @@ class CategoryVC: UIViewController {
         searchBar.delegate = self
         searchBar.placeholder = "Search for news"
         hideKeyboard()
-        
     }
 }
 
@@ -45,7 +43,6 @@ class CategoryVC: UIViewController {
 extension CategoryVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return category.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -71,7 +68,6 @@ extension CategoryVC: UICollectionViewDataSource {
             cell.backgroundColor = CategoryColor.generalColor.rawValue
         }
         
-        //        cell.backgroundColor = uiColors[indexPath.row]
         cell.categoryLabelName.text = categoryName
         cell.categoryLabelName.textColor = #colorLiteral(red: 0.05834504962, green: 0.05800623447, blue: 0.05861062557, alpha: 1)
         cell.newsSourceCategoryLabel.isHidden = true
@@ -84,7 +80,6 @@ extension CategoryVC: UICollectionViewDataSource {
 extension CategoryVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCategory = category[indexPath.row]
-        
         NetworkManager.singleton.getArticles(passedInCategory: selectedCategory.lowercased()) { result in
             switch result {
             case let .success(gotArticles):
@@ -171,7 +166,6 @@ extension CategoryVC: UISearchBarDelegate {
                     headLineVC.searchQuery = "Results for \(searchQueryText)"
                     self.navigationController?.pushViewController(headLineVC, animated: true)
                 }
-                
             case let .failure(gotError):
                 print(gotError)
             }

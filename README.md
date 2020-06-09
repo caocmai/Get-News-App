@@ -11,7 +11,7 @@ This app grabs the lastest news headlines from the [News API](https://newsapi.or
 * Webview Screen - renders the webpage of the headline
 
 ### App Screenshots
-![](project_images/homeScreen.png) ![](project_images/newsCategory.png) ![](project_images/searchResults.png)
+![](project_images/homeScreen.png) ![](project_images/newsCategory.png) ![](project_images/searchResults1.png)
 ![](project_images/newsBySource1.png) ![](project_images/newsByIGN.png) ![](project_images/webpageView.png)
 
 ### Run Locally

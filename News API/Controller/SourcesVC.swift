@@ -252,5 +252,4 @@ extension SourcesVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         search.resignFirstResponder() // To dismiss keyboard w/ return tapped
     }
-    
 }

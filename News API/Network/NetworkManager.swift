@@ -19,7 +19,7 @@ class NetworkManager {
     enum EndPoints {
         case articles
         case category(categoryIn: String, pageNumber: String)
-        case everything(q: String)
+        case search(q: String)
         case sources
         case getFromNewsSource(newsSource: String)
         
@@ -28,7 +28,7 @@ class NetworkManager {
             switch self {
             case .articles, .category, .getFromNewsSource:
                 return "top-headlines"
-            case .everything:
+            case .search:
                 return "everything"
             case .sources:
                 return "sources"
@@ -46,7 +46,7 @@ class NetworkManager {
             return ["Accept": "application/json",
                     "Content-Type": "application/json",
                     "Authorization": "X-Api-Key \(secretKey)",
-                "Host": "newsapi.org"
+                    "Host": "newsapi.org"
             ]
         }
         
@@ -61,7 +61,7 @@ class NetworkManager {
                         "category": categoryIn,
                         "page": pageNum
                 ]
-            case .everything(let qInput):
+            case .search(let qInput):
                 return ["q": qInput
                 ]
             case .sources:
@@ -98,11 +98,11 @@ class NetworkManager {
         let path = endPoint.getPath() // Get the first part of URL
         let stringParams = endPoint.paramsToString()
         let fullURL = URL(string: baseURL.appending("\(path)?\(stringParams)"))
-        //        print(fullURL)
+//                print(fullURL)
         var request = URLRequest(url: fullURL!)
         request.httpMethod = endPoint.getHTTPRequestMethod()
         request.allHTTPHeaderFields = endPoint.getHeaders(secretKey: APIKEY)
-        //        print("\(String(describing: request.allHTTPHeaderFields))")
+//                print("\(String(describing: request.allHTTPHeaderFields))")
         return request
         
     }
@@ -110,6 +110,7 @@ class NetworkManager {
     // Setting the default as page one.
     func getArticles(passedInCategory: String, passedInPageNumber: String="1", _ completion: @escaping (Result<[Article]>) -> Void)  {
         let articleRequest = makeRequest(for: .category(categoryIn: passedInCategory, pageNumber: passedInPageNumber))
+        print(articleRequest)
         
         let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
             // If error
@@ -145,7 +146,7 @@ class NetworkManager {
     }
     
     func getSearchArticles(passedInQuery: String, _ completion: @escaping (Result<[Article]>) -> Void)  {
-        let articleRequest = makeRequest(for: .everything(q: passedInQuery))
+        let articleRequest = makeRequest(for: .search(q: passedInQuery))
         
         let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
             // If error
@@ -251,6 +252,7 @@ class NetworkManager {
         }
         task.resume()
     }
+    
 }
 
 
