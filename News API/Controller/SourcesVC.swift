@@ -124,7 +124,6 @@ class SourcesVC: UIViewController {
                 print(gotError)
             }
         }
-        //        print(sources)
     }
     
     func sort(sources: inout [NewsSource]) {
@@ -153,17 +152,6 @@ extension SourcesVC: UICollectionViewDataSource {
 
 extension SourcesVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        let newVS = HeadlinesVC()
-        
-        //        self.present(newVS, animated: true, completion: nil)
-        
-        //        networkManager.getArticles(passedInCategory: "health"){ result in
-        //            switch result {
-        //            case let .success(gotArticles):
-        //                self.articles = gotArticles
-        //            case let .failure(gotError):
-        //                print(gotError)
-        //            }
         guard let selectedSource = filteredSources[indexPath.row].id else {
             return
         }
@@ -197,33 +185,7 @@ extension SourcesVC: UISearchBarDelegate {
         view.addGestureRecognizer(tapGesture)
     }
     
-    // Trying to hide keyboard when users changes mind of searching
-    //    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    //        print(searchBar.text!)
-    //        if searchBar.text! == "" {
-    //            self.filteredSources = sources
-    //            self.sourcesCollectionView.reloadData()
-    //        } else {
-    //            self.filteredSources = sources.compactMap {$0}.filter({($0.name?.contains(searchBar.text!.lowercased()))!})
-    //            print(self.filteredSources)
-    //            self.sourcesCollectionView.reloadData()
-    //
-    //        }
-    //
-    //    }
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
-        //        if searchText == "" {
-        //            self.filteredSources = sources
-        //            self.sourcesCollectionView.reloadData()
-        //        } else {
-        //            self.filteredSources = sources.compactMap {$0}.filter({($0.name?.lowercased().contains(searchText.lowercased()))!})
-        //            print(self.filteredSources)
-        //            self.sourcesCollectionView.reloadData()
-        //
-        //        }
-        //Appying snapshots instead of reloading collectionview
         filteredSources = filteredSearch(for: searchText)
         applySnapshot()
     }
@@ -252,4 +214,5 @@ extension SourcesVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         search.resignFirstResponder() // To dismiss keyboard w/ return tapped
     }
+    
 }

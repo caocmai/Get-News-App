@@ -17,7 +17,6 @@ class HeadlinesCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func setHeadlines(for article: Article) {
@@ -47,11 +46,12 @@ class HeadlinesCell: UITableViewCell {
                     self.headlineLabel.trailingAnchor.constraint(equalTo: self.headlineImage.leadingAnchor, constant: -5).isActive = true
                     self.headlineImage.image = value.image
                 case .failure(let error):
-                    //                print(error)
+                    print(error)
                     print("No IMAGE TO SHOW CAN'T FETCH")
                     self.headlineLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -5).isActive = true
                 }
             }
         }
     }
+    
 }

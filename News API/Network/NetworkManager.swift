@@ -153,21 +153,10 @@ class NetworkManager {
             if let error = error {
                 return completion(Result.failure(error))
             }
-            
-            do {
-                // Testing to see if got the proper json back
-                let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
-                //                    print(jsonObject)
-                //                    print("\n\n\n\n\n")
-            } catch {
-                print(error.localizedDescription)
-            }
-            // If there's data
             guard let safeData = data else {
                 return completion(Result.failure(EndPointError.noData))
                 
             }
-            // To decode data
             guard let result = try? JSONDecoder().decode(ArticleList.self, from: safeData) else {
                 return completion(Result.failure(EndPointError.couldNotParse))
             }
@@ -189,21 +178,10 @@ class NetworkManager {
             if let error = error {
                 return completion(Result.failure(error))
             }
-            
-            do {
-                // Testing to see if got the proper json back
-                let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
-                //                                    print(jsonObject)
-                //                                    print("\n\n\n\n\n")
-            } catch {
-                print(error.localizedDescription)
-            }
-            // If there's data
             guard let safeData = data else {
                 return completion(Result.failure(EndPointError.noData))
                 
             }
-            // To decode data
             guard let result = try? JSONDecoder().decode(AllNewsSources.self, from: safeData) else {
                 return completion(Result.failure(EndPointError.couldNotParse))
             }
@@ -225,21 +203,11 @@ class NetworkManager {
             if let error = error {
                 return completion(Result.failure(error))
             }
-            
-            do {
-                // Testing to see if got the proper json back
-                let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
-                //                    print(jsonObject)
-                //                    print("\n\n\n\n\n")
-            } catch {
-                print(error.localizedDescription)
-            }
-            // If there's data
+
             guard let safeData = data else {
                 return completion(Result.failure(EndPointError.noData))
                 
             }
-            // To decode data
             guard let result = try? JSONDecoder().decode(ArticleList.self, from: safeData) else {
                 return completion(Result.failure(EndPointError.couldNotParse))
             }
