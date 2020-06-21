@@ -12,7 +12,6 @@ class CustomFlowLayout:  UICollectionViewFlowLayout {
     
     override func prepare() {
         super.prepare()
-        
         guard let collectionView = collectionView else { return }
         let totalWidth = collectionView.bounds.inset(by: collectionView.layoutMargins).width
 //        let maxNumColumns = Int(availableWidth / minColumnWidth)

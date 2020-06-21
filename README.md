@@ -30,9 +30,9 @@ https://www.makeschool.com/portfolio/Cao-Mai
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Note
-This project contains a file called "Secret.swift", which contains my personal API key to the [News API](https://newsapi.org/). When cloning this project you must create that file and add your own API key to be able to run the project. 
+This project contains a file called "Secret.swift", which contains my personal API key to the [News API](https://newsapi.org/). When cloning this project you must create that file and add your own API key to be able to run the project. Also, if the file "Secret.swift" is already there when cloning this project, delete it and recreate that file. 
 
-Inside the Secret.swift file you should add the following:
+Inside your Secret.swift file you should add the following:
 
 ```swift
 enum Secret: String {
