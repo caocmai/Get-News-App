@@ -23,8 +23,8 @@ Project code can be viewed locally and run in Xcode's simulator by [cloning](htt
 * [Kingfisher - 5.14.0](https://github.com/onevcat/Kingfisher) - 3rd party library
 
 ## Author
-* Cao Mai - portfolio can be found at:
-https://www.makeschool.com/portfolio/Cao-Mai
+* Cao Mai - [portfolio](https://www.makeschool.com/portfolio/Cao-Mai)
+
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
