@@ -15,7 +15,7 @@ This app grabs the lastest news headlines from the [News API](https://newsapi.or
 ![](project_images/newsBySource1.png) ![](project_images/newsByIGN.png) ![](project_images/webpageView.png)
 
 ### Run Locally
-Project code can be viewed locally and run in Xcode's simulator by [cloning](https://github.com/caocmai/get-news-app.git) or downloading this repo.
+Project code can be viewed locally and run in Xcode's simulator by cloning or downloading this [repo](https://github.com/caocmai/get-news-app.git).
 
 ## Built With
 * [Xcode - 11.3.1](https://developer.apple.com/xcode/) - The IDE used
