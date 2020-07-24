@@ -30,7 +30,7 @@ Project code can be viewed locally and run in Xcode's simulator by [cloning](htt
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Note
-This project contains a file called "Secret.swift", which contains my personal API key to the [News API](https://newsapi.org/). When cloning this project you must create that file and add your own API key to be able to run the project. Also, if the file "Secret.swift" is already there when cloning this project, delete it, save, and recreate that file along with the following code snippet: 
+This project contains a file called "Secret.swift", which contains my personal API key to the [News API](https://newsapi.org/). When cloning this project you must create that file and add your own API key to be able to run the project. You can get a free API key from the [News API website](https://newsapi.org/). Also, if the file "Secret.swift" is already there when cloning this project, delete it, save, and recreate that file along with the following code snippet: 
 
 Inside your Secret.swift file you should add the following:
 
