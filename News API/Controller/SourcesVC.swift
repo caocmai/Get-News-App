@@ -27,8 +27,10 @@ class SourcesVC: UIViewController {
     enum Section { // For creating snapshots
         case main
     }
+    
     // These 3 lines of code are applicable for snapshots along with main section
     typealias DataSource = UICollectionViewDiffableDataSource<Section, NewsSource>
+    
     private lazy var dataSource = makeDataSource()
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, NewsSource>
     

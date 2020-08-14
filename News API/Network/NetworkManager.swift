@@ -110,7 +110,7 @@ class NetworkManager {
     // Setting the default as page one.
     func getArticles(passedInCategory: String, passedInPageNumber: String="1", _ completion: @escaping (Result<[Article]>) -> Void)  {
         let articleRequest = makeRequest(for: .category(categoryIn: passedInCategory, pageNumber: passedInPageNumber))
-        print(articleRequest)
+//        print(articleRequest)
         
         let task = urlSession.dataTask(with: articleRequest) { (data, response, error) in
             // If error

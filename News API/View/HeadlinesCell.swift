@@ -42,12 +42,12 @@ class HeadlinesCell: UITableViewCell {
                 switch result {
                 case .success(let value):
                     //                print(value.image)
-                    print("sucess")
+//                    print("sucess")
                     self.headlineLabel.trailingAnchor.constraint(equalTo: self.headlineImage.leadingAnchor, constant: -5).isActive = true
                     self.headlineImage.image = value.image
                 case .failure(let error):
                     print(error)
-                    print("No IMAGE TO SHOW CAN'T FETCH")
+//                    print("No IMAGE TO SHOW CAN'T FETCH")
                     self.headlineLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -5).isActive = true
                 }
             }

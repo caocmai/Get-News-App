@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -32,10 +32,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g0k-Oj-rTJ">
-                                <rect key="frame" x="40" y="126.5" width="15.5" height="15.5"/>
+                                <rect key="frame" x="45.5" y="129" width="10" height="10"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="15.5" id="330-Dc-8Dq"/>
-                                    <constraint firstAttribute="height" constant="15.5" id="TzV-Iy-Xvr"/>
+                                    <constraint firstAttribute="width" constant="10" id="330-Dc-8Dq"/>
+                                    <constraint firstAttribute="height" constant="10" id="TzV-Iy-Xvr"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -49,7 +49,7 @@
                             <constraint firstAttribute="trailing" secondItem="lmH-if-iAF" secondAttribute="trailing" constant="4" id="Rnm-2H-3cG"/>
                             <constraint firstAttribute="height" constant="150" id="dTb-fw-ltq"/>
                             <constraint firstItem="lmH-if-iAF" firstAttribute="centerY" secondItem="m3C-mv-XGq" secondAttribute="centerY" id="eOq-Fa-R5j"/>
-                            <constraint firstAttribute="bottom" secondItem="g0k-Oj-rTJ" secondAttribute="bottom" constant="8" id="wMg-Rs-JS5"/>
+                            <constraint firstAttribute="bottom" secondItem="g0k-Oj-rTJ" secondAttribute="bottom" constant="11" id="wMg-Rs-JS5"/>
                         </constraints>
                     </view>
                 </subviews>

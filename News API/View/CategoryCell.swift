@@ -21,7 +21,7 @@ class CategoryCell: UICollectionViewCell {
         self.layer.cornerRadius = 9
         // To indicate category color
         newSourceCategoryColor.layer.masksToBounds = true
-        newSourceCategoryColor.layer.cornerRadius  = 15
+        newSourceCategoryColor.layer.cornerRadius  = newSourceCategoryColor.frame.width/2
     }
     
 }
