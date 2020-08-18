@@ -6,7 +6,7 @@ This app grabs the lastest news headlines from the [News API](https://newsapi.or
 
 ### Features 
 * Home Screen - get news by category or search for news
-* News Sources Screen - get news by sources with ability to filter desired sources and sort by its category with animation
+* News Sources Screen - get news by sources with ability to filter desired sources and sort by its category with animation via UICollectionViewDiffableDataSource
 * Headlines Screen - displays a list of headlines along with their images with pagination of up to 100 headlines (API's limit)
 * Webview Screen - renders the webpage of the headline
 
@@ -40,6 +40,6 @@ Inside your Secret.swift file you should add the following:
 
 ```swift
 enum Secret: String {
-case apiKey = "your unique personal API key goes inside these quotes"
+case apiKey = "your-unique-personal-API-key-goes-inside-these-quotes"
 }
 ```
