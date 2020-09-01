@@ -40,6 +40,6 @@ Inside your Secret.swift file you should add the following:
 
 ```swift
 enum Secret: String {
-case apiKey = "your-unique-personal-API-key-goes-inside-these-quotes"
+case apiKey = "your-unique-personal-API-key-goes-inside-these-quotes!!"
 }
 ```
