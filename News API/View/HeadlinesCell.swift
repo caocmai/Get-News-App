@@ -36,7 +36,7 @@ class HeadlinesCell: UITableViewCell {
         
         let processor = RoundCornerImageProcessor(cornerRadius: 40)
         headlineImage.kf.indicatorType = .activity
-        
+        print("imageurl", article.urlToImage)
         if let safeImageURL = article.urlToImage {
             headlineImage.kf.setImage(with: URL(string: safeImageURL), options: [.processor(processor), .transition(.fade(0.2))]) { result in
                 switch result {
